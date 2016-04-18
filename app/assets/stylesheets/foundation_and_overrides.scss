@@ -1337,5 +1337,25 @@ label {
   padding-right: 4px;
 }
 
+h2 {
+  font-family: "Futura" !important;
+  font-size: 30px !important;
+  text-align: center;
+  color: #8fac7e !important;
+}
+
+p {
+  color: #939393 !important;
+  font-family: "Avenir Next" !important;
+  font-size: 17px !important;
+}
+
+#fullImage img{
+	width:100%;
+}
+
+// #green-bg {
+// 	background-color: #8fac7e;
+// }
 
 @import 'foundation';
