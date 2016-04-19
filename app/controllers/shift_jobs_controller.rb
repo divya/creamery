@@ -35,7 +35,7 @@ class ShiftJobsController < ApplicationController
 
   def destroy
     @shift_job.destroy
-    redirect_to shift_path(@shift_job.shift), notice: "Successfully removed #{@shift_job.job.name} from #{@shift_job.assignment.employee.proper_name}'s shift."
+    redirect_to shifts_path, notice: "Successfully removed #{@shift_job.job.name} from #{@shift_job.assignment.employee.proper_name}'s shift."
   end
 
   private
