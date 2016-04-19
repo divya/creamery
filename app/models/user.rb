@@ -11,6 +11,13 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email, :with => /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, :message => "is not a valid format"
   validate :employee_is_active_in_system
+
+  ROLES = [['Administrator', :admin],['Manager', :manager],['Employee', :employee]]
+
+  def role?(authorized_role)
+    return false if role.nil?
+    role.to_sym == authorized_role
+  end
   
   def self.authenticate(email,password)
     find_by_email(email).try(:authenticate, password)
