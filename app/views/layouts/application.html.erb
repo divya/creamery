@@ -11,10 +11,20 @@
   </head>
 
   <body>
-    <div id="title_area">
-      <%= link_to image_tag('creamery_title.png'), home_path %>
-    </div>
-    <%= render :partial => "partials/nav" %>
+
+    <%# link_to image_tag('banner.png'), home_path %>
+    
+<!--     IF USER IS LOGGED IN THEN SHOW NAVIGATION -->
+    <%# render :partial => "partials/nav" %>
+    
+      <% if current_page?(home_path) || current_page?(root_path) %>
+        <div id = "center-img">
+          <%= link_to(image_tag('bigbanner2.png'), home_path) %>
+        </div>  
+      <% else %>
+        <%= render :partial => "partials/nav" %>
+      <% end %>
+
     
     <!-- <div class="row"> -->
       <!-- <div class="small-12 columns" id="main_content"> -->
