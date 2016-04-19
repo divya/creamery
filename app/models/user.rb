@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     find_by_email(email).try(:authenticate, password)
   end
 
+  def proper_name
+    "#{self.employee.proper_name}"
+  end
+
   private
   def employee_is_active_in_system
     is_active_in_system(:employee)

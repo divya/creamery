@@ -12,6 +12,16 @@
 
   <body>
 
+    <div id="login">
+      <!-- content once logged in goes here -->
+      <% if logged_in? %>
+        <%= link_to 'Logout', logout_path %>
+        <br>[<%= current_user.proper_name %>:<%= current_user.employee.role %>]
+      <% else %>
+        <%= link_to 'Login', login_path %>
+      <% end %>
+    </div>
+
     <%# link_to image_tag('banner.png'), home_path %>
     
 <!--     IF USER IS LOGGED IN THEN SHOW NAVIGATION -->
