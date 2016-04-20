@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   ROLES = [['Administrator', :admin],['Manager', :manager],['Employee', :employee]]
 
   def role?(authorized_role)
-    return false if role.nil?
-    role.to_sym == authorized_role
+    return false if (self.employee.nil? || self.employee.role.nil?)
+    self.employee.role.to_sym == authorized_role
   end
   
   def self.authenticate(email,password)

@@ -59,6 +59,12 @@ class Employee < ActiveRecord::Base
   
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]
+  ROLES = [['Administrator', :admin],['Manager', :manager],['Employee', :employee]]
+
+  def role?(authorized_role)
+    return false if self.role.nil?
+    self.role.to_sym == authorized_role
+  end
   
   
   # Callback code  (NOT DRY!!!)
