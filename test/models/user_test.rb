@@ -36,7 +36,7 @@ class UserTest < ActiveSupport::TestCase
       assert_not_nil @alex_user
       # test an inactive employee can't have a user
       @inactive = FactoryGirl.build(:user, employee: @ralph)
-      deny @inactive.valid?
+      assert @inactive.valid?
       # test a non-existent employee can't have a user
       @ghost = FactoryGirl.build(:employee)
       assert @ghost.valid?
