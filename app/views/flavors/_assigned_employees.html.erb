@@ -3,17 +3,17 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Store</th>
     </tr>
   </thead>
   <tbody>
-    <% @store_flavors.each do |flavor| %>
-      <tr>
-        <td><%= link_to flavor.name, flavor_path(flavor) %></td>
-        <td><%= link_to flavor.store.name, store_path(flavor.store) %></td>
-      </tr>
+    <% unless @active_flavors.empty? %>
+      <% @active_flavors.each do |flavor| %>
+        <tr>
+          <td><%= link_to flavor.name, flavor_path(flavor) %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @active_jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<%= will_paginate @active_flavors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 

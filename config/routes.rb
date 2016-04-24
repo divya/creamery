@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   resources :employees
   resources :assignments
   resources :jobs
+  resources :shifts
   resources :flavors
   resources :users
   resources :sessions
 
-  get 'job/dashboard' => 'jobs#test', :as => :dashboard
+  get 'store/dashboard' => 'stores#test', :as => :dashboard
 
   get 'signup' => 'users#new', :as => :signup
   get 'login' => 'sessions#new', :as => :login

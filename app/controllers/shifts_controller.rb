@@ -2,8 +2,8 @@ class ShiftsController < ApplicationController
   before_action :set_shift, only: [:show, :edit, :update, :destroy]
   
   def index
-    @completed_shifts = Shift.completed.alphabetical.paginate(page: params[:page]).per_page(10)
-    @incomplete_shifts = Shift.incomplete.alphabetical.paginate(page: params[:page]).per_page(10)  
+    @completed_shifts = Shift.completed.chronological.paginate(page: params[:page]).per_page(10)
+    @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:page]).per_page(10)  
   end
 
   def show

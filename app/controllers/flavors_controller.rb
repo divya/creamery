@@ -7,7 +7,7 @@ class FlavorsController < ApplicationController
   end
 
   def show
-    @store_flavors = @flavor.store_flavor.store_id.name.paginate(page: params[:page]).per_page(8)
+    #@store_flavors = @flavor.store_flavor.store_id.name.paginate(page: params[:page]).per_page(8)
   end
 
   def new

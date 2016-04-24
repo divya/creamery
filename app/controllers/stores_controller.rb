@@ -41,6 +41,11 @@ class StoresController < ApplicationController
     redirect_to stores_path, notice: "Successfully removed #{@store.name} from the AMC system."
   end
 
+  def test
+    @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+  end
+
   private
   def set_store
     @store = Store.find(params[:id])
