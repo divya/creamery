@@ -67,36 +67,12 @@
 	</div>
 
 
+<div id="list_shifts">
 	<div class="small-6 columns">
-		<h3>Today's Shifts</h3>	
-		<% @shifts = Shift.for_next_days(0).paginate(page: params[:page]).per_page(15) %>
-		<table class="table table-striped">
-		    <thead>
-		      <tr>
-		        <th>Employee</th>
-		        <th>Start time</th>
-		        <th>&nbsp;</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <% @shifts.each do |shift| %>
-		        <tr>
-		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
-		          <td><%= shift.assignment.start_date.strftime("%m/%d/%y") %></td>
-		          <td>
-		          </td>
-		        </tr>
-		      <% end %>
-		    </tbody>
-	  </table>
-	  <%= will_paginate @shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
-
-	  <%= link_to(eval("new_shift_path"), class: "button radius") do %>
-		  <!-- <i class="fa fa-plus"></i> -->
-		  &nbsp;Add Shift
-	  <% end %>
-
+		<%= render "list_shifts", locals: {model_name: "store", object: @thisStore}  %>
+		<%# render 'list_shifts' %>
  	</div>
+ </div>
 
   
 </div>

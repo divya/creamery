@@ -18,12 +18,28 @@ class ShiftsController < ApplicationController
   end
 
   def create
+
     @shift = Shift.new(shift_params)
+
+    respond_to do |format|
+      if @shift.save
+        @assignment = @shift.assignment
+        @shifts = @assignment.shifts.chronological
+        format.js
+        format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @store }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @shift.errors, status: :unprocessable_entity }
+      end
     
-    if @shift.save
-      redirect_to shift_path(@shift), notice: "Successfully created shift."
-    else
-      render action: 'new'
+    
+    # if @shift.save
+    #   format.js
+    #   redirect_to shift_path(@shift), notice: "Successfully created shift."
+    # else
+    #   render action: 'new'
+    # end
     end
   end
 
