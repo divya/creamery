@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :employees
   resources :assignments
   resources :jobs
+  resources :flavors
   resources :users
   resources :sessions
 
