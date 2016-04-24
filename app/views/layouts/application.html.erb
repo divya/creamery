@@ -25,7 +25,13 @@
     <%# link_to image_tag('banner.png'), home_path %>
     
 <!--     IF USER IS LOGGED IN THEN SHOW NAVIGATION -->
-    <%= render :partial => "partials/nav" %>
+  <% if logged_in? %>
+    <% if current_user.employee.role== "manager" %>
+      <%= render :partial => "partials/manager_nav" %>
+    <%end%> 
+  <% else %>
+    <%= render :partial => "partials/guest_nav" %>
+  <%end%> 
     
 <!--       <% if current_page?(home_path) || current_page?(root_path) %>
         <div id = "center-img">

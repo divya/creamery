@@ -40,6 +40,11 @@ class JobsController < ApplicationController
     redirect_to jobs_path, notice: "Successfully removed #{@job.name} from the AMC system."
   end
 
+  def test
+    @active_jobs = Job.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    @inactive_jobs = Job.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+  end
+
   private
   def set_job
     @job = Job.find(params[:id])

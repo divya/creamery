@@ -1,0 +1,21 @@
+<h3>Active Jobs</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="centered">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_jobs.each do |job| %>
+      <tr>
+        <td><%= link_to job.name, job_path(job) %></td>
+        <td class="centered"><%= job.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @active_jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+
+
