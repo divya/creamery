@@ -9,6 +9,7 @@ class StoresController < ApplicationController
 
   def show
     @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
+
   end
 
   def new
@@ -20,12 +21,22 @@ class StoresController < ApplicationController
 
   def create
     @store = Store.new(store_params)
-    
-    if @store.save
-      redirect_to store_path(@store), notice: "Successfully created #{@store.name}."
-    else
-      render action: 'new'
+
+    respond_to do |format|
+      if @store.save
+        format.html { redirect_to @store, notice: 'Store was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @store }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @store.errors, status: :unprocessable_entity }
+      end
     end
+    
+    # if @store.save
+    #   redirect_to store_path(@store), notice: "Successfully created #{@store.name}."
+    # else
+    #   render action: 'new'
+    # end
   end
 
   def update
@@ -41,10 +52,11 @@ class StoresController < ApplicationController
     redirect_to stores_path, notice: "Successfully removed #{@store.name} from the AMC system."
   end
 
-  def test
-    @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
-    @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
-  end
+  # def test
+  #   @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
+  #   @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+  #   @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
+  # end
 
   private
   def set_store

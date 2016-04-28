@@ -1,2 +1,3 @@
 $('#new_shift').remove();
 $('#new_shift_link').show();
+$('#list_shifts').replaceWith('<%= j render partial: 'list_shifts', locals: {store: @store, shifts: @shifts} %>');

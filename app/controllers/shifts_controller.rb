@@ -12,19 +12,22 @@ class ShiftsController < ApplicationController
 
   def new
     @shift = Shift.new
+    @store =  Assignment.for_employee(current_user.employee_id).first.store
+    #@assignment =  Assignment.find(params[:assignment_id])  
+
   end
 
   def edit
   end
 
   def create
-
     @shift = Shift.new(shift_params)
 
     respond_to do |format|
       if @shift.save
-        @assignment = @shift.assignment
-        @shifts = @assignment.shifts.chronological
+        #@store = @shift.assignment.store
+        @store =  Assignment.for_employee(current_user.employee_id).first.store
+        @shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
         format.js
         format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
         format.json { render action: 'show', status: :created, location: @store }
@@ -53,7 +56,7 @@ class ShiftsController < ApplicationController
 
   def destroy
     @shift.destroy
-    redirect_to shifts_path, notice: "Successfully removed shift from the AMC system."
+    redirect_to dashboard_path, notice: "Successfully removed shift from the AMC system."
   end
 
   private

@@ -11,11 +11,22 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
-//= require foundation.min
+//= require foundation
+//= require turbolinks
 //= require_tree .
 
 $(function() {
   $(document).foundation('topbar', 'reflow');
 });
+
+function renderNewShiftForm() {
+	$('#new_shift_link').remove();
+	$("#shift_form").show();
+}
+
+function removeShiftForm() {
+	$("#shift_form").remove();
+	$('#new_shift_link').show();
+}
+

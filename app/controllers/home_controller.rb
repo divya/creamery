@@ -12,4 +12,10 @@ class HomeController < ApplicationController
   def contact
   end
 
+  def dashboard
+  	@store =  Assignment.for_employee(current_user.employee_id).first.store
+  	@shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
+    #@storeassignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(15)
+  end
+
 end

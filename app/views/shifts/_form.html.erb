@@ -1,8 +1,7 @@
 <%= simple_form_for @shift, html: { class: 'form-horizontal' }, remote: true do |f| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Shift</legend>
-
-    <%= f.input :assignment_id, :collection => Assignment.chronological, input_html: {class: "avg"} %>
+    <%= f.input :assignment_id, :collection => Assignment.current.by_employee, :label_method => lambda { |n| "#{n.employee.name}"}, input_html: {class: "avg"} %>
     <%= f.input :date, :label => "Start Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
     <%= f.input :start_time, input_html: {class: "avg"} %>
     <%= f.input :end_time, input_html: {class: "avg"} %>
