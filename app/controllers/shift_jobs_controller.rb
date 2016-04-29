@@ -26,6 +26,7 @@ class ShiftJobsController < ApplicationController
         #@store = @shift.assignment.store
         @shift = @shift_job.shift
         @jobs = @shift.jobs.alphabetical.to_a
+        @shift_jobs = @shift.shift_jobs
         format.js
         format.html { redirect_to shift_path(@shift_job.shift), notice: 'Job was successfully added.' }
         format.json { render action: 'show', status: :created, location: @store }
@@ -47,7 +48,7 @@ class ShiftJobsController < ApplicationController
 
   def destroy
     @shift_job.destroy
-    redirect_to shifts_path, notice: "Successfully removed #{@shift_job.job.name} from #{@shift_job.assignment.employee.proper_name}'s shift."
+    redirect_to shift_path(@shift_job.shift), notice: "Successfully removed #{@shift_job.job.name} from #{@shift_job.shift.employee.proper_name}'s shift."
   end
 
   private

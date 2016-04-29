@@ -7,7 +7,8 @@ class ShiftsController < ApplicationController
   end
 
   def show
-    @jobs = @shift.jobs.alphabetical #.paginate(page: params[:page]).per_page(8)
+    @jobs = @shift.jobs.alphabetical#.paginate(page: params[:page]).per_page(8)
+    @shift_jobs = @shift.shift_jobs
   end
 
   def new
