@@ -4,6 +4,8 @@ class ShiftsController < ApplicationController
   def index
     @completed_shifts = Shift.completed.chronological.paginate(page: params[:page]).per_page(10)
     @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:page]).per_page(10)  
+    # @store =  Assignment.for_employee(current_user.employee_id).first.store
+    # @shifts = Shift.for_store(@store).for_next_days(0).chronological
   end
 
   def show
@@ -50,7 +52,7 @@ class ShiftsController < ApplicationController
 
   def destroy
     @shift.destroy
-    redirect_to dashboard_path, notice: "Successfully removed shift from the AMC system."
+    redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
   end
 
   private

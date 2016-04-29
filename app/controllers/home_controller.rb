@@ -27,4 +27,18 @@ class HomeController < ApplicationController
     #@shift_jobs = @shift.shift_jobs
   end
 
+  def past_shifts
+    @store =  Assignment.for_employee(current_user.employee_id).first.store
+    @yesterday = Shift.for_store(@store).for_past_days(1).chronological
+    @past_shifts = Shift.for_store(@store).past.chronological
+    #@shift_jobs = @shift.shift_jobs
+  end
+
+  def upcoming_shifts
+    @store =  Assignment.for_employee(current_user.employee_id).first.store
+    @tomorrow = Shift.for_store(@store).for_next_days(1).chronological - Shift.for_store(@store).for_next_days(0).chronological
+    @upcoming_shifts = Shift.for_store(@store).upcoming.chronological - Shift.for_store(@store).for_next_days(0).chronological
+    #@shift_jobs = @shift.shift_jobs
+  end
+
 end

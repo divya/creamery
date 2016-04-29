@@ -13,6 +13,8 @@ class StoreFlavorsController < ApplicationController
     @store_flavor = StoreFlavor.new
     #----------ADD IF LOGGED IN STATEMENT ------------------------------
     @store = Assignment.for_employee(current_user.employee_id).first.store
+
+    #----------ADD THIS FUNCTIONALITY TO JOBS TOO ------------------------------
     @remaining_flavors = Flavor.active - @store.store_flavors.map{|n| n.flavor}
   end
 
