@@ -1,0 +1,3 @@
+$('#new_job_form').remove();
+$('#new_job_link').show();
+$('#list_of_jobs').replaceWith('<%= j render partial: 'shifts/list_of_jobs', locals: {jobs: @jobs} %>');

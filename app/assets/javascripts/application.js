@@ -30,3 +30,8 @@ function removeShiftForm() {
 	$('#new_shift_link').show();
 }
 
+function removeJobForm() {
+	$('#new_job_form').remove();
+	$('#new_job_link').show();
+}
+

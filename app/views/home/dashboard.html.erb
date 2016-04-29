@@ -58,7 +58,7 @@
 	            <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
 	          <% end %>
 	          <td>
-	            <%= link_to(new_shift_path(assignment), class: 'button tiny radius warning') do %>
+	            <%= link_to(new_shift_path, class: 'button tiny radius warning') do %>
 	              &nbsp;Add Shift&nbsp;
 	            <% end %>
           	  </td>

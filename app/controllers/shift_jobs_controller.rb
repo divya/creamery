@@ -20,13 +20,21 @@ class ShiftJobsController < ApplicationController
 
   def create
     @shift_job = ShiftJob.new(shift_job_params)
-    
-    if @shift_job.save
-      redirect_to shift_path(@shift_job.shift), notice: "#{@shift_job.job.name} is assigned to #{@shift_job.assignment.employee.proper_name}'s shift."
-      # redirect_to assignment_path(@assignment), notice: "#{@assignment.employee.proper_name} is assigned to #{@assignment.store.name}."
-    else
-      render action: 'new'
+
+    respond_to do |format|
+      if @shift_job.save
+        #@store = @shift.assignment.store
+        @shift = @shift_job.shift
+        @jobs = @shift.jobs.alphabetical.to_a
+        format.js
+        format.html { redirect_to shift_path(@shift_job.shift), notice: 'Job was successfully added.' }
+        format.json { render action: 'show', status: :created, location: @store }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @shift.errors, status: :unprocessable_entity }
+      end
     end
+    
   end
 
   def update

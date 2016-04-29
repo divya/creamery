@@ -7,7 +7,7 @@ class ShiftsController < ApplicationController
   end
 
   def show
-    @jobs = @shift.shift_jobs.jobs.paginate(page: params[:page]).per_page(8)
+    @jobs = @shift.jobs.alphabetical #.paginate(page: params[:page]).per_page(8)
   end
 
   def new
@@ -23,6 +23,7 @@ class ShiftsController < ApplicationController
   def create
     @shift = Shift.new(shift_params)
 
+
     respond_to do |format|
       if @shift.save
         #@store = @shift.assignment.store
@@ -35,14 +36,6 @@ class ShiftsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @shift.errors, status: :unprocessable_entity }
       end
-    
-    
-    # if @shift.save
-    #   format.js
-    #   redirect_to shift_path(@shift), notice: "Successfully created shift."
-    # else
-    #   render action: 'new'
-    # end
     end
   end
 

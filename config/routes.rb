@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :flavors
   resources :users
   resources :sessions
+  resources :shift_jobs
 
 
   get 'signup' => 'users#new', :as => :signup
