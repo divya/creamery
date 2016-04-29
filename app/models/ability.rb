@@ -12,7 +12,12 @@ class Ability
   elsif user.role? :manager
       # can see a list of all users
       can :read, :all
-      can :test, Store
+
+      # can :update, Project do |this_project|
+      #   managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}
+      #   managed_projects.include? this_project.id
+      # end
+
   else
     can :read, :all
   end

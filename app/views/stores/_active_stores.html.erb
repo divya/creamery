@@ -18,8 +18,10 @@
           <td><%= number_to_phone store.phone %></td>
           <td><%= store.assignments.current.count %></td>      
           <td>
-            <%= link_to(edit_store_path(store), class: 'button tiny radius warning') do %>
-              &nbsp;Edit&nbsp;
+            <%if current_user.role? :admin%>
+              <%= link_to(edit_store_path(store), class: 'button tiny radius warning') do %>
+                &nbsp;Edit&nbsp;
+              <% end %>
             <% end %>
           </td>
         </tr>
