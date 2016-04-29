@@ -5,4 +5,21 @@
 </div>
 
 <!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "shift", object: @shift}  %>
+<%#= render partial: "partials/object_options", locals: {model_name: "shift", object: @shift}  %>
+  <%# opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
+
+  <div class="form-actions">
+    <%= link_to(myshifts_path, class: 'button radius') do %>
+      &nbsp;<%= "Back to Shifts" %>
+    <% end %>
+    &nbsp;&nbsp;
+    
+    <%= link_to(shift_path(@shift), class: 'button radius') do %>
+        &nbsp;<%= "Edit Shift" %>
+    <% end %>
+    &nbsp;&nbsp;
+    
+    <%= link_to(shift_path(@shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete shift"}, class: 'button radius alert') do %>
+        &nbsp;<%= "Delete Shift" %>
+    <% end %>
+  </div>

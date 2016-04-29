@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
   get 'home/dashboard' => 'home#dashboard', :as => :dashboard
+  get 'home/manage_shifts' => 'home#manage_shifts', :as => :myshifts
 
   
   # Set the root url

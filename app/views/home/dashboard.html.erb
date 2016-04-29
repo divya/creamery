@@ -23,67 +23,70 @@
 		  <b>Active:</b> 
 		  <%= @thisStore.active ? "Yes" : "No" %>
 		</p> 
-  
-
-	<% @storeassignments = Assignment.current.for_store(@thisStore).paginate(page: params[:page]).per_page(15) %>
-	<% state = "current" %> 
-
-	<% if @storeassignments.empty? %>
-	  <p><em>There are no <%= state %> assignments at this time.</em></p>
-	<% else %>
-	  <h3><%= state.capitalize %> Assignments</h3>
-	  <table class="table table-striped">
-	    <thead>
-	      <tr>
-	        <th>Employee</th>
-	        <th>Phone</th>
-	        <th class="centered">Role</th>
-	        <th>Start Date</th>
-	        <% if state == 'past' %>
-	          <th>End Date</th>
-	        <% end %>
-	        <th>&nbsp;</th>
-	        <th>&nbsp;</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <% @storeassignments.each do |assignment| %>
-	        <tr>
-	          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
-	          <td><%= number_to_phone assignment.employee.phone unless assignment.employee.phone.nil?  %></td>
-	          <td class="centered"><%= assignment.employee.role.capitalize %></td>
-	          <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
-
-	          <% if state == 'past' %>
-	            <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
-	          <% end %>
-	          <td>
-	            <%= link_to(new_shift_path, class: 'button tiny radius warning') do %>
-	              &nbsp;Add Shift&nbsp;
-	            <% end %>
-          	  </td>
-
-	          <td>
-	          </td>
-	        </tr>
-	      <% end %>
-	    </tbody>
-	  </table>
-	  <%= will_paginate @storeassignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
-	<% end %>
 	</div>
-
-
+  
 
 	<div class="small-6 columns">
-		<%= render partial: "shifts/list_shifts", locals: {store: @store, shifts: @shifts}  %>
+		<% @storeassignments = Assignment.current.for_store(@thisStore).paginate(page: params[:page]).per_page(15) %>
+		<% state = "current" %> 
+
+		<% if @storeassignments.empty? %>
+		  <p><em>There are no <%= state %> assignments at this time.</em></p>
+		<% else %>
+		  <h3><%= state.capitalize %> Assignments</h3>
+		  <table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Employee</th>
+		        <th>Phone</th>
+		        <th class="centered">Role</th>
+		        <th>Start Date</th>
+		        <% if state == 'past' %>
+		          <th>End Date</th>
+		        <% end %>
+		        <th>&nbsp;</th>
+		        <th>&nbsp;</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @storeassignments.each do |assignment| %>
+		        <tr>
+		          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
+		          <td><%= number_to_phone assignment.employee.phone unless assignment.employee.phone.nil?  %></td>
+		          <td class="centered"><%= assignment.employee.role.capitalize %></td>
+		          <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+
+		          <% if state == 'past' %>
+		            <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
+		          <% end %>
+		          <td>
+		            <%= link_to(new_shift_path, class: 'button tiny radius warning') do %>
+		              &nbsp;Add Shift&nbsp;
+		            <% end %>
+	          	  </td>
+
+		          <td>
+		          </td>
+		        </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		  <%= will_paginate @storeassignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+		<% end %>
+	</div>
+</div>
+
+
+
+<!-- 	<div class="small-6 columns">
+		<%#= render partial: "shifts/list_shifts", locals: {store: @store, shifts: @shifts}  %>
 		<%#= render "list_shifts", locals: {model_name: "store", object: @thisStore}  %>
 		<%#= render 'shifts/list_shifts' %>
- 	</div>
+ 	</div> -->
 
 
   
-</div>
+
 
 <!-- Add buttons to list all, edit project or destroy object -->
 <%# render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>
