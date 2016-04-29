@@ -23,10 +23,17 @@
 		  <b>Active:</b> 
 		  <%= @thisStore.active ? "Yes" : "No" %>
 		</p> 
-	</div>
+  </div>
   
+    <div class="small-6 columns">
+	  <%= render 'stores/list_of_flavors' %>
 
-	<div class="small-6 columns">
+	  <%= link_to(new_store_flavor_path(store_id: @thisStore.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
+	    Add New Flavor
+	  <% end %>
+	</div>
+
+	<div class="small-12 columns">
 		<% @storeassignments = Assignment.current.for_store(@thisStore).paginate(page: params[:page]).per_page(15) %>
 		<% state = "current" %> 
 

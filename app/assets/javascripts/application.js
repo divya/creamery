@@ -35,3 +35,7 @@ function removeJobForm() {
 	$('#new_job_link').show();
 }
 
+function removeFlavorForm() {
+	$('#new_store_flavor_form').remove();
+	$('#new_store_flavor_link').show();
+}

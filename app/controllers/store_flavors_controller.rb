@@ -11,18 +11,31 @@ class StoreFlavorsController < ApplicationController
 
   def new
     @store_flavor = StoreFlavor.new
+    #----------ADD IF LOGGED IN STATEMENT ------------------------------
+    @store = Assignment.for_employee(current_user.employee_id).first.store
+    @remaining_flavors = Flavor.active - @store.store_flavors.map{|n| n.flavor}
   end
 
   def edit
   end
 
   def create
+
     @store_flavor = StoreFlavor.new(store_flavor_params)
-    
-    if @store_flavor.save
-      redirect_to store_path(@store_flavor.store), notice: "Successfully added #{@store_flavor.flavor_id.name} to #{@store_flavor.store_id.name}."
-    else
-      render action: 'new'
+
+    respond_to do |format|
+      if @store_flavor.save
+        #@store = @shift.assignment.store
+        @store = @store_flavor.store
+        #@jobs = @shift.jobs.alphabetical.to_a
+        @store_flavors = @store.store_flavors
+        format.js
+        format.html { redirect_to dashboard_path, notice: 'Job was successfully added.' }
+        format.json { render action: 'show', status: :created, location: @store }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @store_flavor.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -36,7 +49,7 @@ class StoreFlavorsController < ApplicationController
 
   def destroy
     @store_flavor.destroy
-    redirect_to stores_path, notice: "Successfully removed #{@store_flavor.flavor_id.name} from #{@store_flavor.store_id.name}."
+    redirect_to dashboard_path, notice: "Successfully removed #{@store_flavor.flavor.name} from #{@store_flavor.store.name}."
   end
 
   private

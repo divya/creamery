@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :shift_jobs
+  resources :store_flavors
 
 
   get 'signup' => 'users#new', :as => :signup

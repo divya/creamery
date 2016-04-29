@@ -1,0 +1,18 @@
+<div id = "new_store_flavor_form">
+	<%= simple_form_for @store_flavor, html: { class: 'form-horizontal' }, remote: true do |f| %>
+	  <fieldset>
+	    <legend><%= controller.action_name.capitalize %> Flavor</legend>
+
+	    <%= f.input :flavor_id, :collection => @remaining_flavors, input_html: {class: "avg"} %>
+	    <%= f.input :store_id, as: :hidden, input_html: { value: params[:store_id] } %>
+
+	    <div class="form-actions">
+	      <%= f.submit nil, :class => 'button radius' %>
+	      <%#= link_to 'Cancel', jobs_path, :class => 'button alert radius' %>
+	      <a href="javascript:;" onclick="removeFlavorForm()">Cancel</a>
+	    </div>
+	  </fieldset>
+	<% end %>
+</div>
+
+<!-- , :label_method => lambda { |n| "#{n.name}" } -->

@@ -1,22 +1,22 @@
 <div id="list_of_flavors">
 	<%#= @shift_jobs.map{ |n| n.job.name} %>
-	<% unless @shift_jobs.empty? %>
+	<% unless @store_flavors.empty? %>
 	<table class="table table-striped">
 		<thead>
 	      <tr>
-	        <th>Job</th>
+	        <th>Flavor</th>
 	        <th>&nbsp;</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 			
 		        
-	          <% for shift_job in @shift_jobs %>
+	          <% for store_flavor in @store_flavors %>
 	          <tr>
-	          <td><%= link_to shift_job.job.name, job_path(shift_job.job) %></td>
+	          <td><%= link_to store_flavor.flavor.name, flavor_path(store_flavor.flavor) %></td>
 	          <td>
-			    <%= link_to(shift_job_path(shift_job), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this job?"}, class: 'button tiny radius alert') do %>
-			        &nbsp;<%= "Delete Job" %>
+			    <%= link_to(store_flavor_path(store_flavor), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this flavor?"}, class: 'button tiny radius alert') do %>
+			        &nbsp;<%= "Delete Flavor" %>
 			    <% end %>
       		  </td>
 	    	  <% end %>
