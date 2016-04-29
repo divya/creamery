@@ -9,9 +9,11 @@
   <%# opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
 
   <div class="form-actions">
+
     <%= link_to(myshifts_path, class: 'button radius') do %>
       &nbsp;<%= "Back to Shifts" %>
     <% end %>
+
     &nbsp;&nbsp;
     
     <%= link_to(shift_path(@shift), class: 'button radius') do %>
@@ -23,3 +25,5 @@
         &nbsp;<%= "Delete Shift" %>
     <% end %>
   </div>
+
+
