@@ -22,6 +22,7 @@ class Shift < ActiveRecord::Base
   scope :for_employee, ->(employee_id) { joins(:assignment, :employee).where("assignments.employee_id = ?", employee_id) }
   scope :for_store, ->(store_id) { joins(:assignment, :store).where("assignments.store_id = ?", store_id) }
   scope :for_next_days, ->(x) { where('date BETWEEN ? AND ?', Date.today, x.days.from_now.to_date) }
+  scope :for_next_days_after_today, ->(x) { where('date BETWEEN ? AND ?', 1.day.from_now.to_date, x.days.from_now.to_date) }
   scope :for_past_days, ->(x) { where('date BETWEEN ? AND ?', x.days.ago.to_date, 1.day.ago.to_date) }
   scope :completed, -> { joins(:shift_jobs).group(:shift_id) }
   scope :incomplete, -> { joins("LEFT JOIN shift_jobs ON shifts.id = shift_jobs.shift_id").where('shift_jobs.job_id IS NULL') }

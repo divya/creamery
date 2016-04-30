@@ -44,7 +44,16 @@ class HomeController < ApplicationController
 
   def account
     @employee = current_user.employee
-    @current_assgn = current_user.employee.current_assignment 
+    @current_assgn = current_user.employee.current_assignment
+    @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5) 
   end
+
+  def employee_shifts
+    @employee = current_user.employee
+    @today_shifts = Shift.for_employee(@employee).for_next_days(0)
+    @upcoming_shifts = Shift.for_employee(@employee).for_next_days_after_today(14)
+    
+  end
+
 
 end

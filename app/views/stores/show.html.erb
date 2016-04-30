@@ -8,6 +8,14 @@
 	    <%= render partial: "assigned_employees" unless @current_assignments.empty?%>
 	  </div>
 
+  <% elsif logged_in? and current_user.role? :employee %>
+    <div class="form-actions">
+
+      <%= link_to(stores_path, class: 'button radius') do %>
+        &nbsp;See All Stores
+      <% end %>
+    </div>
+
   <% else %>
     <div class="form-actions">
       <%= link_to(stores_path, class: 'button radius') do %>

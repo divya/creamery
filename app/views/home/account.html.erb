@@ -27,7 +27,7 @@
 	</div>
 
   <div class="small-6 columns">
-      <h3>Assignment Details</h3>
+      <h3>Current Assignment Details</h3>
 		<p>
 		  <h4>
 		    Store: <%= @current_assgn.store.name %>
@@ -39,8 +39,10 @@
 		<p><b>Pay Level:</b> <%= @current_assgn.pay_level %></p>
 
 		<p><b>Start Date:</b> <%= @current_assgn.start_date.strftime("%m/%d/%y") %></p>
-
 	</div>
 
+  <div class="small-6 columns">
+	<%= render partial: "employees/assignment_history"  %>
+  </div>
 
 </div>

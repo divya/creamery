@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'home/past_shifts' => 'home#past_shifts', :as => :past_shifts
   get 'home/future_shifts' => 'home#future_shifts', :as => :future_shifts
   get 'home/account' => 'home#account', :as => :account
+  get 'home/employee_shifts' => 'home#employee_shifts', :as => :employee_shifts
 
   
   # Set the root url

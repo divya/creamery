@@ -23,7 +23,7 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
     
-    if @employee.save
+    if @employee.save 
       redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."
     else
       render action: 'new'
@@ -31,7 +31,9 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    if @employee.update(employee_params)
+    if @employee.update(employee_params) and logged_in? and current_user.role? :employee
+      redirect_to account_path, notice: "Successfully updated #{@employee.proper_name}."
+    elsif @employee.update(employee_params) and logged_in? and (current_user.role? :manager or current_user.role? :admin)
       redirect_to employee_path(@employee), notice: "Successfully updated #{@employee.proper_name}."
     else
       render action: 'edit'

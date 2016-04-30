@@ -59,6 +59,8 @@ class Ability
         e.id == user.employee.id
       end
 
+      can :read, Store
+
   else
       can :read, Store
 
