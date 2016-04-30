@@ -1,3 +1,4 @@
+<%if logged_in? %>
   <% opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
 
   <div class="form-actions">
@@ -15,3 +16,4 @@
         &nbsp;<%= "Delete #{opt}" %>
     <% end %>
   </div>
+<% end %>

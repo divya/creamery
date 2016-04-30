@@ -22,6 +22,7 @@ class Store < ActiveRecord::Base
   validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes only"
   # make sure stores have unique names
   validates_uniqueness_of :name
+ #before_validation :get_store_coordinates, if: self.latitude.changed? || self.longitude.changed?
   
   # Scopes
   scope :alphabetical, -> { order('name') }
@@ -32,6 +33,15 @@ class Store < ActiveRecord::Base
   # Misc constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]
   
+  # def create_map_link(zoom=12,width=500,height=500)
+  #   markers = "" #s; i = 1
+  #   #self.attractions.alphabetical.to_a.each do |attr|
+  #   markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{self.latitude},#{self.longitude}"
+  #   #i += 1
+  #   end
+  #   map = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+  # end
+
   # Other methods
   def get_store_coordinates
     coord = Geocoder.coordinates("#{street}, #{zip}")

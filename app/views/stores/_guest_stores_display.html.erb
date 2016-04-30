@@ -1,0 +1,20 @@
+<h3>Our Locations</h3>
+
+<% if @active_stores.empty? %>
+  <p><em>There are no active stores at this time.</em></p>
+<% else %>
+      
+      <div class="row">
+      <% @active_stores.each do |store| %>
+        
+        <div class="small-6 columns">
+          <h4><%= link_to store.name, store_path(store) %></h4>
+          <p><%= number_to_phone store.phone %></p>
+          <p><%= store.street %> <%= store.city %>, <%= store.state %>, <%= store.state %> <%= store.zip %></p>
+        </div> 
+         
+      <% end %>
+    </div>
+
+  <%#= will_paginate @active_stores, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>

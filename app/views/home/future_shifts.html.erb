@@ -20,7 +20,7 @@
 		        <tr>
 		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
 		          <td><%= shift.date %></td>
-		          <td><%= shift.start_time.to_time.strftime("%I:%M %p") %></td>
+		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
 		          <td>
 		            <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
 		              &nbsp;Edit&nbsp;

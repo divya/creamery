@@ -15,23 +15,25 @@ class ShiftsController < ApplicationController
 
   def new
     @shift = Shift.new
-    @store =  Assignment.for_employee(current_user.employee_id).first.store
+    @store =  Assignment.current.for_employee(current_user.employee_id).first.store
     #@assignment =  Assignment.find(params[:assignment_id])  
 
   end
 
   def edit
+    @store =  Assignment.current.for_employee(current_user.employee_id).first.store
   end
 
   def create
     @shift = Shift.new(shift_params)
 
-
+    #@shift.start_time = @shift.start_time.localtime if @shift.start_time
+    #@shift.end_time = @shift.end_time.localtime if @shift.end_time
     respond_to do |format|
       if @shift.save
         #@store = @shift.assignment.store
-        @store =  Assignment.for_employee(current_user.employee_id).first.store
-        @shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
+        @store =  Assignment.current.for_employee(current_user.employee_id).first.store
+        @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
         format.js
         format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
         format.json { render action: 'show', status: :created, location: @store }

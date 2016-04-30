@@ -1,12 +1,10 @@
 <div class="row">
 
-	<div class="small-6 columns">
-		<%= render partial: "shifts/list_shifts", locals: {store: @store, shifts: @shifts}  %>
+	<div class="small-12 columns">
+		<%= render partial: "shifts/list_shifts", locals: {store: @store, shifts: @today_shifts}  %>
 		<%#= render "list_shifts", locals: {model_name: "store", object: @thisStore}  %>
 		<%#= render 'shifts/list_shifts' %>
  	</div>
-
-
   
 </div>
 

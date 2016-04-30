@@ -4,7 +4,7 @@
 	<div class="row">
 
 	<div class="small-12 columns">
-
+	<h4>Completed Shifts</h4>
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -17,11 +17,11 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <% @past_shifts.each do |shift| %>
+		      <% @past_shifts_c.each do |shift| %>
 		        <tr>
 		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
 		          <td><%= shift.date %></td>
-		          <td><%= shift.start_time.to_time.strftime("%I:%M %p") %></td>
+		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
 		          <td>
 		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
 		              &nbsp;Add Jobs&nbsp;
@@ -41,6 +41,49 @@
 		      <% end %>
 		    </tbody>
 	  </table>
-	  <%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	  <%= will_paginate @past_shifts_c, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	 </div>
+
+	&nbsp;
+
+	 <div class="small-12 columns">
+		<h4>Incomplete Shifts</h4>
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Employee</th>
+		        <th>Date</th>
+		        <th>Start time</th>
+		        <th>&nbsp;</th>
+		        <th>&nbsp;</th>
+		        <th>&nbsp;</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @past_shifts_i.each do |shift| %>
+		        <tr>
+		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
+		          <td><%= shift.date %></td>
+		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
+		          <td>
+		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+		              &nbsp;Add Jobs&nbsp;
+		            <% end %>
+          		  </td>
+		          <td>
+		            <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
+		              &nbsp;Edit&nbsp;
+		            <% end %>
+          		  </td>
+          		   <td>
+				    <%= link_to(shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}, class: 'button tiny radius alert') do %>
+				        &nbsp;<%= "Delete Shift" %>
+				    <% end %>
+          		  </td>
+		        </tr>
+		      <% end %>
+		    </tbody>
+	  </table>
+	  <%= will_paginate @past_shifts_i, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 	 </div>
 	</div>

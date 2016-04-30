@@ -1,3 +1,4 @@
+
 <div id="list_shifts">
 	<!-- <div class="small-6 columns"> -->
 		<h3>Today's Shifts</h3>	
@@ -13,10 +14,10 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <% @shifts.each do |shift| %>
+		      <% @today_shifts.each do |shift| %>
 		        <tr>
 		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
-		          <td><%= shift.start_time.to_time.strftime("%I:%M %p") %></td>
+		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
 		          <td>
 		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
 		              &nbsp;Add Jobs&nbsp;
@@ -36,8 +37,10 @@
 		      <% end %>
 		    </tbody>
 	  </table>
-	  <%#= will_paginate shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+	  <%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
   <!-- </div> -->
+
+
 
  	<div class="form-actions">
 	  	<%= link_to(new_shift_path(store_id: params[:store_id]), id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
