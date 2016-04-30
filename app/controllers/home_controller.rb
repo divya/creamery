@@ -50,8 +50,8 @@ class HomeController < ApplicationController
 
   def employee_shifts
     @employee = current_user.employee
-    @today_shifts = Shift.for_employee(@employee).for_next_days(0)
-    @upcoming_shifts = Shift.for_employee(@employee).for_next_days_after_today(14)
+    @today_shifts = Shift.for_employee(@employee).for_next_days(0).paginate(page: params[:page]).per_page(5) 
+    @upcoming_shifts = Shift.for_employee(@employee).for_next_days_after_today(14).paginate(page: params[:page]).per_page(5) 
     
   end
 

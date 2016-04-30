@@ -11,17 +11,17 @@
 
   <p>
     <b>Date:</b> 
-    <%= @shift.date %>
+    <%= @shift.date.strftime("%m/%d/%y") %>
   </p>
 
   <p>
     <b>Start Time:</b> 
-    <%= @shift.start_time %>
+    <%= @shift.start_time.localtime.strftime("%I:%M %p") %>
   </p>
 
   <p>
     <b>End Time:</b> 
-    <%= @shift.end_time %>
+    <%= @shift.end_time.localtime.strftime("%I:%M %p") %>
   </p>
 
   <p>

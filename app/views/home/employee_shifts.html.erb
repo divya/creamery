@@ -1,89 +1,72 @@
-<h3>Past Shifts</h3>	
+<h3><%= Date.current.strftime("%A %B %d, %Y") %></h3>	
 
 	<%# @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5) %>
 	<div class="row">
 
 	<div class="small-12 columns">
-	<h4>Completed Shifts</h4>
+	<h4>Today's Shifts</h4>
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
-		        <th>Employee</th>
 		        <th>Date</th>
-		        <th>Start time</th>
-		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
+		        <th>Start Time</th>
+		        <th>End Time</th>
+		        <th>Notes</th>
+		        <!-- <th>&nbsp;</th> -->
+
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <% @past_shifts_c.each do |shift| %>
+		      <% @today_shifts.each do |shift| %>
 		        <tr>
-		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
-		          <td><%= shift.date %></td>
-		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
-		          <td>
-		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-		              &nbsp;Add Jobs&nbsp;
-		            <% end %>
-          		  </td>
-		          <td>
-		            <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
-		              &nbsp;Edit&nbsp;
-		            <% end %>
-          		  </td>
-          		   <td>
-				    <%= link_to(shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}, class: 'button tiny radius alert') do %>
-				        &nbsp;<%= "Delete Shift" %>
-				    <% end %>
-          		  </td>
+		          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.notes %></td>
+
+		          <% if Time.now.strftime("%H:%M %p") > shift.end_time.strftime("%H:%M %p") %>
+		          	  &nbsp;
+			          <td>
+			            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+			              &nbsp;View Jobs&nbsp;
+			            <% end %>
+	          		  </td>
+          		  <%end%>
+
 		        </tr>
 		      <% end %>
 		    </tbody>
 	  </table>
-	  <%= will_paginate @past_shifts_c, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	  <%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 	 </div>
 
 	&nbsp;
 
 	 <div class="small-12 columns">
-		<h4>Incomplete Shifts</h4>
+		<h4>Upcoming Shifts</h4>
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
-		        <th>Employee</th>
 		        <th>Date</th>
-		        <th>Start time</th>
-		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
+		        <th>Start Time</th>
+		        <th>End Time</th>
+		        <th>Notes</th>
+
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <% @past_shifts_i.each do |shift| %>
+		      <% @upcoming_shifts.each do |shift| %>
 		        <tr>
-		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
-		          <td><%= shift.date %></td>
-		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
-		          <td>
-		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-		              &nbsp;Add Jobs&nbsp;
-		            <% end %>
-          		  </td>
-		          <td>
-		            <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
-		              &nbsp;Edit&nbsp;
-		            <% end %>
-          		  </td>
-          		   <td>
-				    <%= link_to(shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}, class: 'button tiny radius alert') do %>
-				        &nbsp;<%= "Delete Shift" %>
-				    <% end %>
-          		  </td>
+		          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.notes %></td>
+
+
 		        </tr>
 		      <% end %>
 		    </tbody>
 	  </table>
-	  <%= will_paginate @past_shifts_i, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	  <%= will_paginate @upcoming_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 	 </div>
 	</div>
