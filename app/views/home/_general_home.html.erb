@@ -44,12 +44,14 @@
 	<div class="small-6 small-offset-3 columns">
 	  	<p>The A&amp;M Creamery currently does not have any open stores.</p>
 	</div>
-</div>
+
 <% else %>
 	<% @active_stores.each do |store| %> 
-	    <td><%=store.name%></td>
+	<div class="small-6 small-offset-3 columns">
+	    <p><td><%=store.name%></td></p>
+	</div>
 	<% end %>
 <% end %>
-
+</div>
 
 

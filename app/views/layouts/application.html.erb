@@ -28,7 +28,10 @@
   <% if logged_in? %>
     <% if current_user.employee.role== "manager" %>
       <%= render :partial => "partials/manager_nav" %>
+    <% elsif current_user.employee.role== "employee" %>
+      <%= render :partial => "partials/employee_nav" %>
     <%end%> 
+    
   <% else %>
     <%= render :partial => "partials/guest_nav" %>
   <%end%> 

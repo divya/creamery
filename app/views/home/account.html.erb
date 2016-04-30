@@ -1,0 +1,46 @@
+<div class="row">
+
+  <div class="small-6 columns">
+      <h3>Employee Details</h3>
+		<p>
+		  <h4>
+		    Name: <%= @employee.proper_name %>
+		  </h4>
+		</p>
+
+		<p><b>Email:</b> <%= @employee.user.email %></p>
+
+		<p><b>Phone:</b> <%= number_to_phone @employee.phone unless @employee.phone.nil? %></p>
+
+		<p><b>Date of Birth:</b> <%= @employee.date_of_birth.strftime("%m/%d/%y") %></p>
+
+		<p><b>SSN:</b> <%= @employee.ssn %></p>
+
+		<p><b>Role:</b> <%= @employee.role.capitalize %></p>
+
+		<p><b>Active:</b> <%= @employee.active ? "Yes" : "No" %></p>
+
+		<%= link_to(edit_employee_path(@employee), class: 'button radius') do %>
+        &nbsp;<%= "Edit" %>
+    	<% end %>
+
+	</div>
+
+  <div class="small-6 columns">
+      <h3>Assignment Details</h3>
+		<p>
+		  <h4>
+		    Store: <%= @current_assgn.store.name %>
+		  </h4>
+		</p>
+
+		<p><b>Role:</b> <%= @employee.role.capitalize %></p>
+
+		<p><b>Pay Level:</b> <%= @current_assgn.pay_level %></p>
+
+		<p><b>Start Date:</b> <%= @current_assgn.start_date.strftime("%m/%d/%y") %></p>
+
+	</div>
+
+
+</div>

@@ -46,11 +46,17 @@ class Ability
       #   #managed_assignments = Assignment.current.for_store(managed_store).map{|a| a.id} 
       #   managed_employees.include? this_shift.employee.id && managed_store == this_shift.store.id
       # end
-
+   elsif user.role? :employee
+      can :edit, Employee
 
 
   else
-    can :read, :all
+      can :read, Store
+
+      # can :read, Store do |this_store|  
+      #   active_stores = Store.active.map{|s| s.id}
+      #   active_stores.include? this_store
+      # end
   end
 
     #

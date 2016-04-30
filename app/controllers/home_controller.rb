@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   def home
+    @active_stores = Store.active
   end
 
   def about
@@ -39,6 +40,11 @@ class HomeController < ApplicationController
     #@tomorrow = (Shift.for_store(@store).for_next_days(1).chronological - Shift.for_store(@store).for_next_days(0).chronological).paginate(page: params[:page]).per_page(5)
     @future_shifts = Shift.for_store(@store).after_today.chronological.paginate(page: params[:page]).per_page(5)
     #@shift_jobs = @shift.shift_jobs
+  end
+
+  def account
+    @employee = current_user.employee
+    @current_assgn = current_user.employee.current_assignment 
   end
 
 end
