@@ -47,8 +47,17 @@ class Ability
       #   managed_employees.include? this_shift.employee.id && managed_store == this_shift.store.id
       # end
    elsif user.role? :employee
-      can :edit, Employee
+      can :update, User do |u|  
+        u.id == user.id
+      end
 
+      can :update, Employee do |e|  
+        e.id == user.employee.id
+      end
+
+      can :read, Employee do |e|  
+        e.id == user.employee.id
+      end
 
   else
       can :read, Store
