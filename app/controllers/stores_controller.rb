@@ -11,6 +11,7 @@ class StoresController < ApplicationController
     @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
     @store_flavors = @store.store_flavors
     @store.get_store_coordinates
+    @store.save!
   end
 
   def new

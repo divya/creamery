@@ -57,6 +57,17 @@ class ShiftsController < ApplicationController
     redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
   end
 
+  def start_shift
+    @shift.start_now
+    @shift.save!
+    redirect_to employee_home_path, notice: "Successfully started shift."
+  end
+
+  def end_shift
+    @shift.end_now
+    redirect_to employee_home_path, notice: "Successfully ended shift."
+  end
+
   private
   def set_shift
     @shift = Shift.find(params[:id])

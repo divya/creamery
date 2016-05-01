@@ -6,6 +6,18 @@
 </p>
 
 <p>
-  <b>Active:</b> 
-  <%= @flavor.active ? "Yes" : "No" %>
+  <h4>
+    Stores Offering this Flavor:
+  </h4>
+  <% @store_flavors.each do |sf| %>
+  	<p><%= link_to(sf.store.name, store_path(sf.store))%></p>
+  <% end %>
 </p>
+
+
+<% if logged_in? %>
+	<p>
+	  <b>Active:</b> 
+	  <%= @flavor.active ? "Yes" : "No" %>
+	</p>
+<% end %>

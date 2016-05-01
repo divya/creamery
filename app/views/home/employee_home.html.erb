@@ -1,0 +1,44 @@
+<h2> Hello, <%= @employee.first_name %></h2>
+
+<h3><%= Date.current.strftime("%A %B %d, %Y") %></h3>	
+
+	<%# @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5) %>
+<div class="row">
+	<div class = "small 12 columns">
+	<h4>Today's Shifts</h4>
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Date</th>
+		        <th>Start Time</th>
+		        <th>End Time</th>
+		        <th>&nbsp;</th>
+		        <th>&nbsp;</th>
+		        <!-- <th>&nbsp;</th> -->
+
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @today_shifts.each do |shift| %>
+		        <tr>
+		          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+		          <td>
+		            <%= link_to(start_shift_path(shift), class: 'button tiny radius warning') do %>
+		              &nbsp;Start Shift&nbsp;
+		            <% end %>
+	      		  </td>
+	      		  <td>
+		            <%= link_to(end_shift_path(shift), class: 'button tiny radius warning') do %>
+		              &nbsp;End Shift&nbsp;
+		            <% end %>
+	      		  </td>
+
+		        </tr>
+		      <% end %>
+		    </tbody>
+	  </table>
+	  <%#= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	</div> 
+</div>

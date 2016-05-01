@@ -31,8 +31,10 @@
 
   <%= render 'list_of_jobs' %>
 
-
-  <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_job_link', class: 'button tiny radius', remote: true) do %>
-    Add New Job
+  <% if logged_in? and !current_user.role? :employee %>
+    <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_job_link', class: 'button tiny radius', remote: true) do %>
+      Add New Job
+    <% end %>
   <% end %>
+
 </div>

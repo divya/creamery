@@ -1,13 +1,16 @@
 <div class="row">
   <div class="small-7 columns">
     <%= render partial: "shift_details" %>
+
+    <% if logged_in? and current_user.role? :employee %>
+        <%= link_to(employee_shifts_path, class: 'button radius') do %>
+          &nbsp;<%= "Back to Shifts" %>
+        <% end %>
+    <% end %>
   </div>
 </div>
 
-<!-- Add buttons to list all, edit project or destroy object -->
-<%#= render partial: "partials/object_options", locals: {model_name: "shift", object: @shift}  %>
-  <%# opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
-
+<% if logged_in? and !current_user.role? :employee %>
   <div class="form-actions">
 
     <%= link_to(myshifts_path, class: 'button radius') do %>
@@ -25,5 +28,6 @@
         &nbsp;<%= "Delete Shift" %>
     <% end %>
   </div>
+<% end %>
 
 

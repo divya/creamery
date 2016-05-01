@@ -6,6 +6,14 @@
 </p>
 
 <p>
-  <b>Active:</b> 
-  <%= @job.active ? "Yes" : "No" %>
+  <b>Description:</b> 
+  <%= @job.description %>
 </p>
+
+
+<% if logged_in? %>
+	<p>
+	  <b>Active:</b> 
+	  <%= @job.active ? "Yes" : "No" %>
+	</p>
+<%end%>

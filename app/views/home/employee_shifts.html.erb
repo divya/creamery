@@ -43,7 +43,10 @@
 	&nbsp;
 
 	 <div class="small-6 columns">
-		<h4>Upcoming Shifts</h4>
+
+	  
+	  <h4>Upcoming Shifts</h4>
+	  <% unless @upcoming_shifts.empty? %>
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -66,8 +69,13 @@
 		        </tr>
 		      <% end %>
 		    </tbody>
-	  </table>
+	  	</table>
 	  <%= will_paginate @upcoming_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	  </div>
+
+	  <%else%>
+	  	<p>You have no upcoming shifts.</p>
+	  <% end %>
 	 </div>
 
 
@@ -91,11 +99,15 @@
 		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
 		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
 		          <td><%= shift.notes %></td>
-		          <td>
-		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-		              &nbsp;View Jobs&nbsp;
-		            <% end %>
-          		  </td>
+		          <% if shift.completed? %>
+			          <td>
+			            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+			              &nbsp;View Jobs&nbsp;
+			            <% end %>
+	          		  </td>
+	          	  <% else %>
+	          	  	<td>&nbsp;</td>
+          		  <% end %>
 
 
 		        </tr>

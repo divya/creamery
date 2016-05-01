@@ -58,8 +58,15 @@ class Ability
       can :read, Employee do |e|  
         e.id == user.employee.id
       end
+      
+      can :read, Shift do |s|  
+        my_shifts = Shift.for_employee(user).map{|s| s.id}
+        my_shifts.include? s.id 
+      end
 
       can :read, Store
+      can :read, Job
+      can :read, Flavor
 
   else
       can :read, Store
