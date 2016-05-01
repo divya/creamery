@@ -16,6 +16,18 @@
   <%= number_to_phone @store.phone %>
 </p>
 
+<% unless @store_flavors.empty? %>
+  <p>
+    <h4>
+      Flavors Offered:
+    </h4>
+    <% @store_flavors.each do |sf| %>
+      <p><%= sf.flavor.name %></p>
+    <% end %>
+  </p>
+<% end %>
+
+
 <%if logged_in? %>
   <p>
     <b>Active:</b> 

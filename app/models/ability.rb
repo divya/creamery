@@ -31,7 +31,7 @@ class Ability
       #   managed_assignments.include? this_assignment.id 
       # end
 
-      # --------------- DOESN'T WORK WHAT THE FUCK -------------------------------------
+      # --------------- DOESN'T WORK  -------------------------------------
       # can :edit, Shift do |this_shift|
       #   managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
       #   managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
@@ -71,6 +71,7 @@ class Ability
   else
       can :read, Store
 
+      # ---------- THIS DOESN'T WORK (???) -------------------
       # can :read, Store do |this_store|  
       #   active_stores = Store.active.map{|s| s.id}
       #   active_stores.include? this_store
