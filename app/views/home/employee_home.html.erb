@@ -1,6 +1,6 @@
 <h2> Hello, <%= @employee.first_name %></h2>
 
-<h3><%= Date.current.strftime("%A %B %d, %Y") %></h3>	
+<h2><%= Date.current.strftime("%A %B %d, %Y") %></h2>	
 
 	<%# @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5) %>
 <div class="row">

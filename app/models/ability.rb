@@ -13,6 +13,14 @@ class Ability
       # can see a list of all users
       can :read, Store
 
+      can :update, User do |u|  
+        u.id == user.id
+      end
+
+      can :update, Employee do |e|  
+        e.id == user.employee.id
+      end
+
       can :read, Employee do |this_employee|
         managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
         managed_employees = Assignment.current.for_store(managed_store).map{|a| a.employee.id} 

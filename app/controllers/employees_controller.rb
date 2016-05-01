@@ -12,6 +12,7 @@ class EmployeesController < ApplicationController
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
 
     # get upcoming shifts for this employee (later)  
+    @upcoming_shifts = Shift.for_employee(@employee).for_next_days(14).chronological
   end
 
   def new
@@ -33,9 +34,9 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    if @employee.update(employee_params) and logged_in? and current_user.role? :employee
+    if @employee.update(employee_params) and logged_in? and !current_user.role? :admin
       redirect_to account_path, notice: "Successfully updated #{@employee.proper_name}."
-    elsif @employee.update(employee_params) and logged_in? and (current_user.role? :manager or current_user.role? :admin)
+    elsif @employee.update(employee_params) and logged_in? and current_user.role? :admin
       redirect_to employee_path(@employee), notice: "Successfully updated #{@employee.proper_name}."
     else
       render action: 'edit'
