@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require foundation.min
 //= require_tree .
 
@@ -39,9 +40,9 @@ function removeFlavorForm() {
 	$('#new_store_flavor_link').show();
 }
 
-// Datepicker code
+// //Datepicker code
 $(function() {
   $(".datepicker").datepicker({
-    format: 'mm/dd/YYYY'
+    dateFormat: "MM d, yy"
   });
 });

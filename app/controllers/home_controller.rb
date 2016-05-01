@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
 
     # --- WEIRD SHIT HAPPENS TO SHIFTS AJAX IF I PUT THIS VARIABLE HERE INSTEAD OF IN THE VIEWS ----------------------------
-    #@storeassignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(15)
+    #@assignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(15)
   end
 
   def manage_shifts

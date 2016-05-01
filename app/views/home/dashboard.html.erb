@@ -50,7 +50,7 @@
 		    </thead>
 		    <tbody>
 		      <% @today_shifts.each do |shift| %>
-		      <%# @assignment_test = assignment %>
+		      
 		        <tr>
 		          <td><%= link_to shift.assignment.employee.proper_name, employee_path(shift.assignment.employee) %></td>
 		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
@@ -89,6 +89,7 @@
 		<% if @storeassignments.empty? %>
 		  <p><em>There are no <%= state %> assignments at this time.</em></p>
 		<% else %>
+
 		  <h3><%= state.capitalize %> Assignments</h3>
 		  <table class="table table-striped">
 		    <thead>
@@ -96,12 +97,8 @@
 		        <th>Employee</th>
 		        <th>Phone</th>
 		        <th class="centered">Role</th>
-		        <th>Start Date</th>
-		        <% if state == 'past' %>
-		          <th>End Date</th>
-		        <% end %>
 		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
+
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -111,20 +108,12 @@
 		          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
 		          <td><%= number_to_phone assignment.employee.phone unless assignment.employee.phone.nil?  %></td>
 		          <td class="centered"><%= assignment.employee.role.capitalize %></td>
-		          <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
-
-		          <% if state == 'past' %>
-		            <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
-		          <% end %>
 		          <td>
-		          	
-		            <%= link_to(new_shift_path, class: 'button tiny radius warning') do %>
-		              &nbsp;Add Shift&nbsp;
+		            <%= link_to(assignment_path(assignment), class: 'button tiny radius warning') do %>
+		              &nbsp;View Details&nbsp;
 		            <% end %>
 	          	  </td>
 
-		          <td>
-		          </td>
 		        </tr>
 		      <% end %>
 		    </tbody>

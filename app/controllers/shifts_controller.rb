@@ -1,5 +1,7 @@
 class ShiftsController < ApplicationController
   before_action :set_shift, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+  
   
   def index
     @completed_shifts = Shift.completed.chronological.paginate(page: params[:page]).per_page(10)

@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:edit, :update, :destroy]
-  # before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  #before_action :set_assignment, only: [:edit, :update, :destroy]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
   authorize_resource
 
   def index
@@ -8,10 +8,11 @@ class AssignmentsController < ApplicationController
     @past_assignments = Assignment.past.by_employee.by_store.paginate(page: params[:page]).per_page(15)  
   end
 
-  # def show
-  #   # get the shift history for this assignment (later; empty now)
-  #   @shifts = Array.new
-  # end
+  def show
+    # get the shift history for this assignment (later; empty now)
+    @store = current_user.employee.current_assignment.store
+
+  end
 
   def new
     @assignment = Assignment.new
