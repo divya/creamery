@@ -10,11 +10,13 @@ class EmployeesController < ApplicationController
   def show
     # get the assignment history for this employee
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
+
     # get upcoming shifts for this employee (later)  
   end
 
   def new
     @employee = Employee.new
+    @employee.user.build
   end
 
   def edit
@@ -51,7 +53,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name, :ssn, :date_of_birth, :role, :phone, :active)
+    params.require(:employee).permit(:first_name, :last_name, :ssn, :date_of_birth, :role, :phone, :active, user_attributes: [:email, :password_digest])
   end
 
 end

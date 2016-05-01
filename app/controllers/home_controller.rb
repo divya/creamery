@@ -28,6 +28,11 @@ class HomeController < ApplicationController
     #@shift_jobs = @shift.shift_jobs
   end
 
+  def employee_home
+    @store =  Assignment.current.for_employee(current_user.employee_id).first.store
+    @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
+  end
+
   def past_shifts
     @store =  Assignment.current.for_employee(current_user.employee_id).first.store
     #@yesterday = Shift.for_store(@store).for_past_days(1).chronological.paginate(page: params[:page]).per_page(5)
@@ -51,7 +56,8 @@ class HomeController < ApplicationController
   def employee_shifts
     @employee = current_user.employee
     @today_shifts = Shift.for_employee(@employee).for_next_days(0).paginate(page: params[:page]).per_page(5) 
-    @upcoming_shifts = Shift.for_employee(@employee).for_next_days_after_today(14).paginate(page: params[:page]).per_page(5) 
+    @upcoming_shifts = Shift.for_employee(@employee).for_next_days_after_today(14).paginate(page: params[:page]).per_page(5)
+    @past_shifts = Shift.for_employee(@employee).past.paginate(page: params[:page]).per_page(5)
     
   end
 

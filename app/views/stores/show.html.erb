@@ -2,6 +2,9 @@
   <!-- <div class="small-7 columns"> -->
     <%= render partial: "store_details" %>
 <!--   </div> -->
+    <%= image_tag @store.create_map_link %>
+
+    <br/><br/>
 
   <%if logged_in? and current_user.role? :admin%>
 	  <div class="small-5 columns">

@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email, :with => /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, :message => "is not a valid format"
   validate :employee_is_active_in_system, on: :update
+  # validates_presence_of :password, on: :create
+  # validates_confirmation_of :password, message: "doesn't match confirmation"
+  # validates_length_of :password, minimum: 4, allow_blank: true
 
   ROLES = [['Administrator', :admin],['Manager', :manager],['Employee', :employee]]
 

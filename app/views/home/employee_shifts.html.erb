@@ -3,7 +3,7 @@
 	<%# @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5) %>
 	<div class="row">
 
-	<div class="small-12 columns">
+	<div class="small-6 columns">
 	<h4>Today's Shifts</h4>
 		<table class="table table-striped">
 		    <thead>
@@ -25,7 +25,7 @@
 		          <td><%= shift.notes %></td>
 
 		          <% if Time.now.strftime("%H:%M %p") > shift.end_time.strftime("%H:%M %p") %>
-		          	  &nbsp;
+		          	  
 			          <td>
 			            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
 			              &nbsp;View Jobs&nbsp;
@@ -42,7 +42,7 @@
 
 	&nbsp;
 
-	 <div class="small-12 columns">
+	 <div class="small-6 columns">
 		<h4>Upcoming Shifts</h4>
 		<table class="table table-striped">
 		    <thead>
@@ -69,4 +69,40 @@
 	  </table>
 	  <%= will_paginate @upcoming_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 	 </div>
-	</div>
+
+
+	 <div class="small-12 columns">
+		<h4>Past Shifts</h4>
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Date</th>
+		        <th>Start Time</th>
+		        <th>End Time</th>
+		        <th>Notes</th>
+		        <th>&nbsp;</th>
+
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @past_shifts.each do |shift| %>
+		        <tr>
+		          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+		          <td><%= shift.notes %></td>
+		          <td>
+		            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+		              &nbsp;View Jobs&nbsp;
+		            <% end %>
+          		  </td>
+
+
+		        </tr>
+		      <% end %>
+		    </tbody>
+	  </table>
+	  <%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	 </div>
+
+</div>

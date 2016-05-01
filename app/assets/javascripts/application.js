@@ -38,3 +38,10 @@ function removeFlavorForm() {
 	$('#new_store_flavor_form').remove();
 	$('#new_store_flavor_link').show();
 }
+
+// Datepicker code
+$(function() {
+  $(".datepicker").datepicker({
+    format: 'mm/dd/YYYY'
+  });
+});

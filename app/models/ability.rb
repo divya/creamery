@@ -11,7 +11,7 @@ class Ability
 
   elsif user.role? :manager
       # can see a list of all users
-      #can :read, :all
+      can :read, Store
 
       can :read, Employee do |this_employee|
         managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}

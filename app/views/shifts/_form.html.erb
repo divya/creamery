@@ -2,7 +2,8 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Shift</legend>
     <%= f.input :assignment_id, :collection => Assignment.current.for_store(@store).by_employee, :label_method => lambda { |n| "#{n.employee.name}"}, input_html: {class: "avg"} %>
-    <%= f.input :date, :label => "Start Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
+    <%#= f.input :date, :label => "Start Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
+    <%= f.input :date, :label => "Start Date", as: :string, :input_html => {:class => "avg datepicker"} %>
     <%= f.input :start_time, input_html: {class: "avg"} %>
     <%= f.input :end_time, input_html: {class: "avg"} %>
     <%= f.input :notes, input_html: {class: "avg"} %>
@@ -13,3 +14,4 @@
     </div>
   </fieldset>
 <% end %>
+
