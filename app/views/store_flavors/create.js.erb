@@ -1,3 +1,3 @@
 $('#new_store_flavor_form').remove();
 $('#new_store_flavor_link').show();
-$('#list_of_flavors').replaceWith('<%= j render partial: 'stores/list_of_flavors'%>');
+$('#list_of_flavors').replaceWith('<%= j render partial: 'stores/list_of_flavors', locals: {store: @store, store_flavors: @store_flavors}%>');

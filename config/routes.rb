@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get 'home/employee_shifts' => 'home#employee_shifts', :as => :employee_shifts
   get 'home/employee_home' => 'home#employee_home', :as => :employee_home
   get 'home/new_shifts' => 'home#new_shifts', :as => :new_shifts
+  get 'home/admin_home' => 'home#admin_home', :as => :admin_home
+
+
 
   # get 'shift/start_shift' => 'shift#start_shift', :as => :start_shift
   # get 'shift/end_shift' => 'shift#end_shift', :as => :end_shift

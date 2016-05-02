@@ -1,16 +1,29 @@
 <div class="row">
-  <!-- <div class="small-7 columns"> -->
+  
+  <div class="small-7 columns">
     <%= render partial: "store_details" %>
-<!--   </div> -->
     <%= image_tag @store.create_map_link %>
+  </div>
 
     <br/><br/>
 
   <%if logged_in? and current_user.role? :admin%>
+
 	  <div class="small-5 columns">
 	    <%= render partial: "assigned_employees" unless @current_assignments.empty?%>
-      <%= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>
+
+      <%= link_to(new_assignment_path(store_id: @store.id), class: 'button tiny radius') do %>
+        Add New Assignment
+      <% end %>
 	  </div>
+
+    <div class="small-4 columns">
+      <%= render 'stores/list_of_flavors' %>
+
+      <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
+        Add New Flavor
+      <% end %>
+    </div>
 
   <% elsif logged_in? and current_user.role? :employee %>
     <div class="form-actions">
@@ -28,7 +41,7 @@
     </div>
   <% end %>
 
-
+<%= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>
 
 </div>
 

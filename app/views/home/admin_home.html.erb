@@ -1,0 +1,37 @@
+<h2> Hello, <%= @employee.first_name %></h2>
+
+<h2><%= Date.current.strftime("%A %B %d, %Y") %></h2>	
+
+<div clas= "row">
+
+	<div class="small-4 columns">
+		<h3>Active Stores</h3>
+		<%= link_to(stores_path) do  %>
+			See All Stores
+		<% end %>
+		<%= render 'stores/active_stores' %>	
+
+		<%= link_to(new_store_path, class: 'button radius warning') do %>
+			&nbsp;Add a New Store&nbsp;
+		<% end %>
+	</div>
+
+	<div class="small-5 columns">
+		<h3>Active Flavors</h3>
+		<%= link_to(flavors_path) do  %>
+			See All Flavors
+		<% end %>
+		<%= render 'flavors/active_flavors' %>
+
+		<%= link_to(new_flavor_path, class: 'button radius warning') do %>
+			&nbsp;Add a New Flavor&nbsp;
+		<% end %>
+	</div>
+
+	<div class="small-2 columns">
+		<%= link_to(new_employee_path, class: 'button radius warning') do %>
+			&nbsp;Add a New Employee to the System&nbsp;
+		<% end %>
+	</div>
+
+</div>

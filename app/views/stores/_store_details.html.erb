@@ -16,6 +16,22 @@
   <%= number_to_phone @store.phone %>
 </p>
 
+<%if logged_in? %>
+  <p>
+    <b>Active:</b> 
+    <%= @store.active ? "Yes" : "No" %>
+  </p>
+<% end %>
+<!-- 
+  <%# logged_in? and current_user.role? :admin%>
+    <div class="small-5 columns">
+      <%#= render partial: "assigned_employees" unless @current_assignments.empty?%>
+    <%#= link_to(edit_store_path(@store), class: 'button radius') do %>
+        &nbsp;<%#= "Edit Store" %>
+    <%# end %>
+    </div>
+  <%# end %> -->
+
 <% unless @store_flavors.empty? %>
   <p>
     <h4>
@@ -28,9 +44,3 @@
 <% end %>
 
 
-<%if logged_in? %>
-  <p>
-    <b>Active:</b> 
-    <%= @store.active ? "Yes" : "No" %>
-  </p>
-<% end %>

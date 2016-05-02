@@ -31,7 +31,7 @@
     <% elsif current_user.employee.role== "employee" %>
       <%= render :partial => "partials/employee_nav" %>
     <% elsif current_user.employee.role== "admin" %>
-      <%= render :partial => "partials/manager_nav" %>
+      <%= render :partial => "partials/admin_nav" %>
     <%end%> 
     
   <% else %>

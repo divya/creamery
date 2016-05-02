@@ -14,13 +14,15 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-  	@store =  Assignment.current.for_employee(current_user.employee_id).first.store
-  	#@shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
-    @store_flavors = @store.store_flavors
-    @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
+    unless current_user.employee.role? :admin
+    	@store =  Assignment.current.for_employee(current_user.employee_id).first.store
+    	#@shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
+      @store_flavors = @store.store_flavors
+      @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
 
-    # --- WEIRD SHIT HAPPENS TO SHIFTS AJAX IF I PUT THIS VARIABLE HERE INSTEAD OF IN THE VIEWS ----------------------------
-    @assignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(5)
+      # --- WEIRD SHIT HAPPENS TO SHIFTS AJAX IF I PUT THIS VARIABLE HERE INSTEAD OF IN THE VIEWS ----------------------------
+      @assignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(5)
+    end
   end
 
   def manage_shifts
@@ -32,6 +34,12 @@ class HomeController < ApplicationController
   def employee_home
     @employee = current_user.employee
     @today_shifts = Shift.for_employee(@employee).for_next_days(0) #.paginate(page: params[:page]).per_page(5)
+  end
+
+  def admin_home
+    @employee = current_user.employee
+    @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(5)
+    @active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(5)
   end
 
   def past_shifts

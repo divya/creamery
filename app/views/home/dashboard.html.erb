@@ -1,6 +1,6 @@
 <h2> Hello, <%= current_user.employee.first_name %></h2>
 <h2><%= Date.current.strftime("%A %B %d, %Y") %></h2>	
-<h2><%= @store.name %></h2>	
+<h2><%= @store.name unless @store.nil? %></h2>	
 
 
 <div class="row">
