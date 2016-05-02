@@ -17,7 +17,9 @@ class ShiftsController < ApplicationController
 
   def new
     @shift = Shift.new
-    @store =  Assignment.current.for_employee(current_user.employee_id).first.store
+    if logged_in? and !current_user.role? :admin
+      @store =  Assignment.current.for_employee(current_user.employee_id).first.store
+    end
     #@assignment =  Assignment.find(params[:assignment_id])  
 
   end
@@ -34,10 +36,14 @@ class ShiftsController < ApplicationController
     respond_to do |format|
       if @shift.save
         @assignment = @shift.assignment
-        @store =  Assignment.current.for_employee(current_user.employee_id).first.store
+        @store =  Assignment.current.for_employee(current_user.employee_id).first.store if not current_user.employee.current_assignment.nil?
         @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
         @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:page]).per_page(5)
-        @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
+        if logged_in? and !current_user.role? :admin
+          @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
+        else
+          @new_shifts = Shift.upcoming.reverse_order
+        end
         format.js
         format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
         format.json { render action: 'show', status: :created, location: @store }
@@ -60,8 +66,10 @@ class ShiftsController < ApplicationController
     @shift.destroy
     redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
   end
-
-
+  
+  def incomplete_shifts
+    @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:page]).per_page(10)  
+  end
 
   def start_shift
     @shift.start_now

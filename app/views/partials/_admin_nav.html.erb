@@ -10,10 +10,27 @@
         <li><%= link_to "Flavors", flavors_path %></li>
 
         <li class="has-dropdown">
+          <%= link_to "Employees", employees_path %>
+          <ul class="dropdown">
+            <li><%= link_to "Employee List", employees_path %></li>
+            <li><%= link_to "Add an Employee", new_employee_path %></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
           <%= link_to "Assignments", assignments_path %>
           <ul class="dropdown">
             <li><%= link_to "See Assignments", assignments_path %></li>
             <li><%= link_to "Create New Assignment", new_assignment_path %></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <%= link_to "Shifts", shifts_path %>
+          <ul class="dropdown">
+            <li><%= link_to "Completed Shifts", shifts_path %></li>
+            <li><%= link_to "Incomplete Shifts", incomplete_shifts_path %></li>
+            <li><%= link_to "New Shifts", new_shifts_path %></li>
           </ul>
         </li>
 

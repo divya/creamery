@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get 'home/employee_home' => 'home#employee_home', :as => :employee_home
   get 'home/new_shifts' => 'home#new_shifts', :as => :new_shifts
   get 'home/admin_home' => 'home#admin_home', :as => :admin_home
+  get 'shift/incomplete_shifts' => 'shifts#incomplete_shifts', :as => :incomplete_shifts
+
 
 
 

@@ -70,8 +70,14 @@ class HomeController < ApplicationController
   end
 
   def new_shifts
-    @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
+    if logged_in? and current_user.role? :admin
+      @new_shifts = Shift.upcoming.reverse_order
+    else
+      @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
+    end
   end
+
+
 
 
 end
