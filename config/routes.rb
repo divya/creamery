@@ -29,10 +29,13 @@ Rails.application.routes.draw do
   get 'home/account' => 'home#account', :as => :account
   get 'home/employee_shifts' => 'home#employee_shifts', :as => :employee_shifts
   get 'home/employee_home' => 'home#employee_home', :as => :employee_home
+  get 'home/new_shifts' => 'home#new_shifts', :as => :new_shifts
+
   # get 'shift/start_shift' => 'shift#start_shift', :as => :start_shift
   # get 'shift/end_shift' => 'shift#end_shift', :as => :end_shift
   patch 'shifts/:id' => 'shifts#start_shift', as: :start_shift
   patch 'home/employee_home' => 'shifts#end_shift', as: :end_shift
+
   
   # Set the root url
   root :to => 'home#home'  

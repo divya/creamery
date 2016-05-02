@@ -59,7 +59,10 @@ class HomeController < ApplicationController
     @today_shifts = Shift.for_employee(@employee).for_next_days(0).paginate(page: params[:page]).per_page(5) 
     @upcoming_shifts = Shift.for_employee(@employee).for_next_days_after_today(14).paginate(page: params[:page]).per_page(5)
     @past_shifts = Shift.for_employee(@employee).past.paginate(page: params[:page]).per_page(5)
-    
+  end
+
+  def new_shifts
+    @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
   end
 
 

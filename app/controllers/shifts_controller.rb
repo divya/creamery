@@ -37,6 +37,7 @@ class ShiftsController < ApplicationController
         @store =  Assignment.current.for_employee(current_user.employee_id).first.store
         @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
         @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:page]).per_page(5)
+        @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
         format.js
         format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
         format.json { render action: 'show', status: :created, location: @store }
@@ -59,6 +60,8 @@ class ShiftsController < ApplicationController
     @shift.destroy
     redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
   end
+
+
 
   def start_shift
     @shift.start_now
