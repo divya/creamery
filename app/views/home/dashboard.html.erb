@@ -5,28 +5,28 @@
 
 <div class="row">
  <!--  <div class="small-6 columns">
-		<% @thisStore = Assignment.current.for_employee(current_user.employee_id).first.store %>
+		<%# @thisStore = Assignment.current.for_employee(current_user.employee_id).first.store %>
 		<h3>Store Details</h3>
 		<p>
 		  <h4>
-		    Name: <%= @thisStore.name %>
+		    Name: <%#= @thisStore.name %>
 		  </h4>
 		</p>
 
 		<p>
 		  <b>Address:</b><br>
-		  <%= @thisStore.street %><br />
-		  <%= @thisStore.city %>, <%= @thisStore.state %> <%= @thisStore.zip %>
+		  <%#= @thisStore.street %><br />
+		  <%#= @thisStore.city %>, <%#= @thisStore.state %> <%#= @thisStore.zip %>
 		</p>
 
 		<p>
 		  <b>Phone:</b><br>
-		  <%= number_to_phone @thisStore.phone %>
+		  <%#= number_to_phone @thisStore.phone %>
 		</p>
 
 		<p>
 		  <b>Active:</b> 
-		  <%= @thisStore.active ? "Yes" : "No" %>
+		  <%#= @thisStore.active ? "Yes" : "No" %>
 		</p> 
   </div> -->
 
@@ -77,16 +77,16 @@
     <div class="small-6 columns">
 	  <%= render 'stores/list_of_flavors' %>
 
-	  <%= link_to(new_store_flavor_path(store_id: @thisStore.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
+	  <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
 	    Add New Flavor
 	  <% end %>
 	</div>
 
 	<div class="small-12 columns">
-		<% @storeassignments = Assignment.current.for_store(@thisStore).paginate(page: params[:page]).per_page(15) %>
+		<%# @storeassignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(15) %>
 		<% state = "current" %> 
 
-		<% if @storeassignments.empty? %>
+		<% if @assignments.empty? %>
 		  <p><em>There are no <%= state %> assignments at this time.</em></p>
 		<% else %>
 
@@ -102,7 +102,7 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <% @storeassignments.each do |assignment| %>
+		      <% @assignments.each do |assignment| %>
 		      <%# @assignment_test = assignment %>
 		        <tr>
 		          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
@@ -118,7 +118,7 @@
 		      <% end %>
 		    </tbody>
 		  </table>
-		  <%= will_paginate @storeassignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+		  <%= will_paginate @assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 		<% end %>
 	</div>
 </div>

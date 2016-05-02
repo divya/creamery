@@ -1,4 +1,5 @@
-<h3>Shift History</h3>
+<div id = "shift_future">
+<h3>Upcoming Shifts</h3>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -7,21 +8,15 @@
       <th>End Time</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
-      <th>&nbsp;</th>
 
     </tr>
   </thead>
   <tbody>
-    <% @past_shifts.each do |shift| %>
+    <% @upcoming_shifts.each do |shift| %>
       <tr>
         <td><%= shift.date.strftime("%m/%d/%y") %></td>
     		<td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
     		<td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
-        <td>
-          <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-            &nbsp;Add Jobs&nbsp;
-          <% end %>
-        </td>
         <td>
           <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
             &nbsp;Edit&nbsp;
@@ -36,4 +31,14 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @past_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %><!-- <p>Forthcoming...</p> -->
+<%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %><!-- <p>Forthcoming...</p> -->
+
+  <div class="form-actions">
+      <%= link_to(new_shift_path, id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
+      <!-- <i class="fa fa-plus"></i> -->
+        <!-- <a href="javascript:;" onclick="renderNewShiftForm()">TEST JS</a> -->
+      &nbsp;Add Shift
+    <% end %>
+  </div>
+
+</div>

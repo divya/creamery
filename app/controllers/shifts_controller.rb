@@ -33,9 +33,10 @@ class ShiftsController < ApplicationController
     #@shift.end_time = @shift.end_time.localtime if @shift.end_time
     respond_to do |format|
       if @shift.save
-        #@store = @shift.assignment.store
+        @assignment = @shift.assignment
         @store =  Assignment.current.for_employee(current_user.employee_id).first.store
         @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
+        @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:page]).per_page(5)
         format.js
         format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
         format.json { render action: 'show', status: :created, location: @store }
