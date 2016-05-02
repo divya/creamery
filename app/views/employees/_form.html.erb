@@ -18,9 +18,9 @@
       <legend>User for this employee</legend>
         <!-- <div id="town_attractions"> -->
           <%= employee_form.simple_fields_for :user do |user_form| %>
-            <%= user_form.input :email, include_blank: true, input_html: {class: "avg"}%>
-            <%= user_form.input :password, include_blank: true, input_html: {class: "avg"} %>
-            <%= user_form.input :password_confirmation, include_blank: true, input_html: {class: "avg"} %>
+            <%= user_form.input :email, input_html: {class: "avg"}%>
+            <%= user_form.input :password, input_html: {class: "avg"} %>
+            <%= user_form.input :password_confirmation, input_html: {class: "avg"} %>
           <% end %> 
     </div> 
   </div>

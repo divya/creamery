@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <b>Email:</b> <%= @employee.user.email %>
+  <b>Email:</b> <%= @employee.user.email unless @employee.user.nil? %>
 </p>
 
 

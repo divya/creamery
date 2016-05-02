@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :set_shift, only: [:show, :edit, :update, :destroy]
+  before_action :set_shift, only: [:show, :edit, :update, :destroy, :start_shift, :end_shift]
   authorize_resource
   
   
@@ -64,6 +64,7 @@ class ShiftsController < ApplicationController
 
   def destroy
     @shift.destroy
+    #FIX THIS REDIRECT
     redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
   end
   
@@ -79,6 +80,7 @@ class ShiftsController < ApplicationController
 
   def end_shift
     @shift.end_now
+    @shift.save!
     redirect_to employee_home_path, notice: "Successfully ended shift."
   end
 

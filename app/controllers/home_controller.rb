@@ -26,7 +26,7 @@ class HomeController < ApplicationController
   end
 
   def manage_shifts
-    @store =  Assignment.current.for_employee(current_user.employee_id).first.store
+    @store =  Assignment.current.for_employee(current_user.employee_id).first.store 
     @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
     #@shift_jobs = @shift.shift_jobs
   end

@@ -76,6 +76,16 @@ class Ability
         my_shifts.include? s.id 
       end
 
+      can :start_shift, Shift do |s|  
+        my_shifts = Shift.for_employee(user).map{|s| s.id}
+        my_shifts.include? s.id 
+      end
+
+      can :end_shift, Shift do |s|  
+        my_shifts = Shift.for_employee(user).map{|s| s.id}
+        my_shifts.include? s.id 
+      end
+
       can :read, Store
       can :read, Job
       can :read, Flavor

@@ -33,13 +33,10 @@ Rails.application.routes.draw do
   get 'home/admin_home' => 'home#admin_home', :as => :admin_home
   get 'shift/incomplete_shifts' => 'shifts#incomplete_shifts', :as => :incomplete_shifts
 
-
-
-
   # get 'shift/start_shift' => 'shift#start_shift', :as => :start_shift
   # get 'shift/end_shift' => 'shift#end_shift', :as => :end_shift
-  patch 'shifts/:id' => 'shifts#start_shift', as: :start_shift
-  patch 'home/employee_home' => 'shifts#end_shift', as: :end_shift
+  patch 'start_shift/:id' => 'shifts#start_shift', as: :start_shift
+  patch 'end_shift/:id' => 'shifts#end_shift', as: :end_shift
 
   
   # Set the root url

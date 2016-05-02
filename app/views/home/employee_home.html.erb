@@ -25,12 +25,13 @@
 		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
 		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
 		          <td>
-		            <%= link_to(start_shift_path(shift), class: 'button tiny radius warning') do %>
+
+		            <%= link_to(start_shift_path(shift), method: :patch, class: 'button tiny radius warning') do %>
 		              &nbsp;Start Shift&nbsp;
 		            <% end %>
 	      		  </td>
 	      		  <td>
-		            <%= link_to(end_shift_path(shift), class: 'button tiny radius warning') do %>
+		            <%= link_to(end_shift_path(shift), method: :patch, class: 'button tiny radius warning') do %>
 		              &nbsp;End Shift&nbsp;
 		            <% end %>
 	      		  </td>
