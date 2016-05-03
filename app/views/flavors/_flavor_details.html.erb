@@ -1,25 +1,20 @@
-<h3>Flavor Details</h3>
-<p>
-  <h4>
-    Name: <%= @flavor.name %>
-  </h4>
-</p>
-
-<% unless @store_flavors.empty? %>
-	<p>
-	  <h4>
-	    Stores Offering this Flavor:
-	  </h4>
-	  <% @store_flavors.each do |sf| %>
-	  	<p><%= link_to(sf.store.name, store_path(sf.store))%></p>
-	  <% end %>
-	</p>
-<%end%>
+	<% unless @store_flavors.empty? %>
+		<p><b>Stores Offering this Flavor:</b></p>
+		  
+		  <% @store_flavors.each do |sf| %>
+		  	<h4><%= link_to(sf.store.name, store_path(sf.store))%></h4>
+		  <% end %>
+		
+	<%end%>
+	<br/>
 
 
-<% if logged_in? %>
-	<p>
-	  <b>Active:</b> 
-	  <%= @flavor.active ? "Yes" : "No" %>
-	</p>
-<% end %>
+	<% if logged_in? %>
+		<p>
+		  <b>Active:</b> 
+		  <%= @flavor.active ? "Yes" : "No" %>
+		</p>
+	<% end %>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
