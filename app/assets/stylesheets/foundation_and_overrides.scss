@@ -1346,6 +1346,16 @@ h2 {
   color: #8fac7e !important;
 }
 
+h4 a{
+  font-family: "Futura" !important;
+  font-size: 20px !important;
+  color: #cc919a !important;
+}
+
+h4 a:hover {
+  text-decoration: underline;
+}
+
 p {
   color: #939393 !important;
   font-family: "Avenir Next" !important;
@@ -1366,6 +1376,13 @@ p {
 
 #center-the-things {
   text-align: center;
+}
+
+#subtitle p {
+  text-align: center;
+  color: #8fac7e !important;
+  font-family: "Avenir Next" !important;
+  font-size: 22px !important;
 }
 
 #footer {

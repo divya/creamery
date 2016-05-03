@@ -1,16 +1,21 @@
-<h3>Our Locations</h3>
+<br/>
+<h2>OUR LOCATIONS</h2>
+<div id = "subtitle"><p>We currently have stores in <%= Store.active.size %> different locations.</p></div>
+<br/>
 
 <% if @active_stores.empty? %>
   <p><em>There are no active stores at this time.</em></p>
 <% else %>
       
       <div class="row">
-      <% @active_stores.each do |store| %>
+        <% @active_stores.each do |store| %>
         
         <div class="small-6 columns">
+          <div id = "center-the-things">
           <h4><%= link_to store.name, store_path(store) %></h4>
-          <p><%= number_to_phone store.phone %></p>
-          <p><%= store.street %> <%= store.city %>, <%= store.state %>, <%= store.state %> <%= store.zip %></p>
+          <p><%= number_to_phone store.phone %> <br/>
+          <%= store.street %> <%= store.city %>, <%= store.state %>, <%= store.state %> <%= store.zip %></p>
+          </div>
         </div> 
 
          
