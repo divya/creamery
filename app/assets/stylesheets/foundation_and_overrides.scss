@@ -1494,4 +1494,16 @@ tbody{
   background-color: #4c0000 !important;
 }
 
+#view-jobs-button .button{
+  background-color: #cc919a !important;
+  font-family: "Futura" !important;
+  font-size: 10px !important;
+  color: #ffffff !important;
+}
+
+#view-jobs-button a:hover{
+  text-decoration: none !important;
+  background-color: #996d73 !important;
+}
+
 @import 'foundation';
