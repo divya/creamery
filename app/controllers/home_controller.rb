@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 
   def home
     @active_stores = Store.active
+    @active_flavors = Flavor.active
   end
 
   def about

@@ -60,6 +60,13 @@
        <!-- <li><%#= link_to "Dashboard", dashboard_path %></li> -->
 
         <li><%= link_to "My Profile", account_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to 'Logout', logout_path %></li>
+          <!-- <br>[<%#= current_user.proper_name %>:<#%= current_user.employee.role %>] -->
+       <% else %>
+          <li><%= link_to 'Login', login_path %></li>
+       <% end %>
+     </ul>
       
 
     </section>

@@ -74,13 +74,13 @@ class ShiftsController < ApplicationController
 
   def start_shift
     @shift.start_now
-    @shift.save!
+    #@shift.save!
     redirect_to employee_home_path, notice: "Successfully started shift."
   end
 
   def end_shift
     @shift.end_now
-    @shift.save!
+    #@shift.save!
     redirect_to employee_home_path, notice: "Successfully ended shift."
   end
 

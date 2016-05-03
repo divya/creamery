@@ -1358,10 +1358,12 @@ p {
 // 	background-color: #8fac7e;
 // }
 
-#center-img img{
-	position: fixed;
-	width: 100%;
+#center-image img{
+	margin-left: 30%;
 }
 
+#center-the-things {
+  text-align: center;
+}
 
 @import 'foundation';

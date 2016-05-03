@@ -26,6 +26,7 @@
 
 	</div>
 
+<% unless logged_in? and current_user.role? :admin %>
   <div class="small-6 columns">
       <h3>Current Assignment Details</h3>
 		<p>
@@ -44,5 +45,6 @@
   <div class="small-6 columns">
 	<%= render partial: "employees/assignment_history"  %>
   </div>
+<% end %>
 
 </div>
