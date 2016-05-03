@@ -1512,4 +1512,16 @@ tbody{
   background-color: #996d73 !important;
 }
 
+#edit-button .button{
+  background-color: #939393 !important;
+  font-family: "Futura" !important;
+  font-size: 12px !important;
+  color: #ffffff !important;
+}
+
+#edit-button a:hover{
+  text-decoration: none !important;
+  background-color: #7e7e7e !important;
+}
+
 @import 'foundation';
