@@ -1349,7 +1349,7 @@ h1 {
 h2 {
   font-family: "Futura" !important;
   font-size: 30px !important;
-  text-align: center;
+  text-align: center !important;
   color: #8fac7e !important;
 }
 
@@ -1448,7 +1448,17 @@ b{
 
 table{
 	font-family: "Futura" !important;
+}
+
+table a{
+	color: #cc919a !important;
   	font-size: 15px !important;
+  	font-weight: 500;
+}
+
+table a:hover{
+	color: #cc919a !important;
+	text-decoration: underline;
 }
 
 tbody{
