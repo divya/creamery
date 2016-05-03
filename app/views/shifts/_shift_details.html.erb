@@ -1,35 +1,36 @@
 <!-- <h3>Shift Details</h3> -->
 <div id="shift-details">
+  
+  <div class="small-6 columns">
   <p>
-    <h3>
-      Employee: <%= @shift.assignment.employee.proper_name %>
-    </h3>
-    <h4>
-      Store: <%= @shift.assignment.store.name %>
-    </h4>
-  </p>
-
-  <p>
-    <b>Date:</b> 
+    <b>Date</b><br/>
     <%= @shift.date.strftime("%m/%d/%y") %>
   </p>
 
   <p>
-    <b>Start Time:</b> 
+    <b>Start Time</b><br/>
     <%= @shift.start_time.localtime.strftime("%I:%M %p") %>
   </p>
 
   <p>
-    <b>End Time:</b> 
+    <b>End Time</b><br/> 
     <%= @shift.end_time.localtime.strftime("%I:%M %p") %>
   </p>
 
-  <p>
-    <b>Notes:</b> 
-    <%= @shift.notes %>
-  </p>
+  <% unless @shift.notes.nil? %>
+    <p>
+      <b>Notes</b><br/>
+      <%= @shift.notes %>
+    </p>
+  <% end %>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</div>
+
+  <div class="small-4 columns">
 
   <%= render 'list_of_jobs' %>
+</div>
 
   <% if logged_in? and !current_user.role? :employee %>
     <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_job_link', class: 'button tiny radius', remote: true) do %>

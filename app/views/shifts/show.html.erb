@@ -1,13 +1,20 @@
+<br/>
+<h2><%= @shift.assignment.employee.proper_name %> | <%= @shift.assignment.store.name %></h2>
 <div class="row">
-  <div class="small-7 columns">
+  
     <%= render partial: "shift_details" %>
 
+
+  <div class="small-7 columns">
     <% if logged_in? and current_user.role? :employee %>
+        <div id = "back-button">
         <%= link_to(employee_shifts_path, class: 'button radius') do %>
-          &nbsp;<%= "Back to Shifts" %>
+          &nbsp;<%= "SEE ALL SHIFTS" %>
         <% end %>
+        </div>
     <% end %>
   </div>
+
 </div>
 
 <% if logged_in? and !current_user.role? :employee %>
@@ -29,5 +36,4 @@
     <% end %>
   </div>
 <% end %>
-
 
