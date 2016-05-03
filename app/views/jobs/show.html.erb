@@ -1,17 +1,23 @@
+<br/>
+  <h2>
+    <%= @job.name %>
+  </h2>
+
 <div class="row">
+
   <div class="small-7 columns">
-    <%= render partial: "job_details" %>
-
-
+	<%= render partial: "job_details" %>
 	<!-- Add buttons to list all, edit project or destroy object -->
 	<%if logged_in? and current_user.role? :admin%>
 		<%= render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>
 
 	<% else %>
 	    <div class="form-actions">
+          <div id = "back-button">
 	      <%= link_to(jobs_path, class: 'button radius') do %>
-	        &nbsp;Back to Jobs
+	        SEE ALL JOBS
 	      <% end %>
+	      </div>
 	    </div>
 	<% end %>
 
