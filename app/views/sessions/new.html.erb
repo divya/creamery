@@ -1,20 +1,27 @@
-<h3>Log In</h3>
+<br/>
+<br/>
+<h2>Log In</h2>
 
 <%= form_tag sessions_path do %>
 
-	<div class="control-group">
-    <%= label_tag :email %>
-    <div class="controls">
-      <%= text_field_tag :email, params[:email] %>
+<div class = "row">
+  <div class = "small 6-columns">
+  	<div class="control-group">
+      <b><%= label_tag :email %></b>
+      <div class="controls">
+        <b><%= text_field_tag :email, params[:email] %></b>
+      </div>
     </div>
-  </div>
 
-	<div class="control-group">
-    <%= label_tag :password %>
-    <div class="controls">
-      <%= password_field_tag :password %>
+  	<div class="control-group">
+      <b><%= label_tag :password %></b>
+      <div class="controls">
+        <%= password_field_tag :password%>
+      </div>
     </div>
-  </div>
 
-  <div class="actions"><%= submit_tag "Log In" %></div>
+    <div class="actions"><%= submit_tag "Log In" %></div>
+  </div>
+</div>
+
 <% end %>
