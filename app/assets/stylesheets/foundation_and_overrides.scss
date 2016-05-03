@@ -1339,6 +1339,13 @@ label {
   padding-right: 4px;
 }
 
+h1 {
+  font-family: "Futura" !important;
+  font-size: 60px !important;
+  text-align: center;
+  color: #8fac7e !important;
+}
+
 h2 {
   font-family: "Futura" !important;
   font-size: 30px !important;
@@ -1348,7 +1355,7 @@ h2 {
 
 h3 {
   font-family: "Futura" !important;
-  font-size: 30px !important;
+  font-size: 22px !important;
   text-align: center;
   color: #8fac7e !important;
 }
@@ -1437,6 +1444,28 @@ b{
 #log-in-box{
 	background-color: #dbefce !important;
 	padding: 70px;
+}
+
+table{
+	font-family: "Futura" !important;
+  	font-size: 15px !important;
+}
+
+tbody{
+	font-family: "Avenir Next" !important;
+  	font-size: 15px !important;
+}
+
+#start_shift_button .button{
+  background-color: #8fac7e !important;
+  font-family: "Futura" !important;
+  font-size: 12px !important;
+}
+
+#end_shift_button .button{
+  background-color: #7f0000 !important;
+  font-family: "Futura" !important;
+  font-size: 12px !important;
 }
 
 @import 'foundation';
