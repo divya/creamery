@@ -1262,6 +1262,8 @@ $topbar-bg: $topbar-bg-color;
 
 #copy {
   font-size: 85%;
+  color: #ffffff !important;
+  font-family: "Avenir Next" !important;
 }
 
 table {
@@ -1364,6 +1366,25 @@ p {
 
 #center-the-things {
   text-align: center;
+}
+
+#footer {
+  margin-top: 15px;
+  padding-top: 0px;
+  padding-bottom: 15px;
+  color: #ffffff !important;
+  text-align: center;
+  background-color: #8fac7e !important;
+}
+
+#footer a {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @import 'foundation';
