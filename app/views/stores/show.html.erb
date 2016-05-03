@@ -1,7 +1,7 @@
 <div class="row">
-  
+  <%= render partial: "store_details" %>
+
   <div class="small-7 columns">
-    <%= render partial: "store_details" %>
     <%= image_tag @store.create_map_link %>
   </div>
 
@@ -33,12 +33,6 @@
       <% end %>
     </div>
 
-  <% else %>
-    <div class="form-actions">
-      <%= link_to(stores_path, class: 'button radius') do %>
-        &nbsp;Back to Stores
-      <% end %>
-    </div>
   <% end %>
 
 <%= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>

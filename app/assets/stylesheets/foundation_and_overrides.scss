@@ -1346,6 +1346,13 @@ h2 {
   color: #8fac7e !important;
 }
 
+h3 {
+  font-family: "Futura" !important;
+  font-size: 30px !important;
+  text-align: center;
+  color: #8fac7e !important;
+}
+
 h4 a{
   font-family: "Futura" !important;
   font-size: 20px !important;
@@ -1360,6 +1367,11 @@ p {
   color: #939393 !important;
   font-family: "Avenir Next" !important;
   font-size: 17px !important;
+}
+
+b{
+  font-family: "Futura" !important;
+  font-size: 22px !important;
 }
 
 #fullImage img{
@@ -1403,5 +1415,12 @@ p {
   color: #ffffff;
   text-decoration: underline;
 }
+
+#back-button .button{
+  background-color: #8fac7e !important;
+  font-family: "Futura" !important;
+  font-size: 15px !important;
+}
+
 
 @import 'foundation';
