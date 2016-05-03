@@ -7,30 +7,30 @@
   <div id = "subtitle"><p>There are currently <%= Job.active.size %> jobs.</p></div>
   <div class="row">
     <div class="small-6 small-offset-3 columns">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th width="225">Job Name</th>
-        <th width="225">Job Description</th>
-        <th width="75">&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @active_jobs.each do |job| %>
-        <tr>
-          <td><%= link_to job.name, job_path(job) %></td>
-          <td><%= job.description %></td>     
-          <td>
-            <%if current_user.role? :admin%>
-              <%= link_to(edit_job_path(job), class: 'button tiny radius warning') do %>
-                &nbsp;Edit&nbsp;
-              <% end %>
-            <%end%>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="225">Job Name</th>
+            <th width="225">Job Description</th>
+            <th width="75">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @active_jobs.each do |job| %>
+            <tr>
+              <td><%= link_to job.name, job_path(job) %></td>
+              <td><%= job.description %></td>     
+              <td>
+                <%if current_user.role? :admin%>
+                  <%= link_to(edit_job_path(job), class: 'button tiny radius warning') do %>
+                    &nbsp;Edit&nbsp;
+                  <% end %>
+                <%end%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 </div>
 </div>
   <%= will_paginate @active_jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>

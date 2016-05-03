@@ -1430,6 +1430,10 @@ b{
   font-size: 15px !important;
 }
 
+#back-button a:hover{
+  background-color: #577A3A !important;
+}
+
 .top-bar-section a{
 	font-family: "Futura" !important;
   	font-size: 15px !important;
@@ -1470,12 +1474,24 @@ tbody{
   background-color: #8fac7e !important;
   font-family: "Futura" !important;
   font-size: 12px !important;
+  color: #ffffff !important;
+}
+
+#start_shift_button a:hover{
+  text-decoration: none !important;
+  background-color: #577A3A !important;
 }
 
 #end_shift_button .button{
   background-color: #7f0000 !important;
   font-family: "Futura" !important;
   font-size: 12px !important;
+  color: #ffffff !important;
+}
+
+#end_shift_button a:hover{
+  text-decoration: none !important;
+  background-color: #4c0000 !important;
 }
 
 @import 'foundation';
