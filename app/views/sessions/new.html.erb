@@ -1,27 +1,38 @@
-<br/>
-<br/>
-<h2>Log In</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
-<%= form_tag sessions_path do %>
 
-<div class = "row">
-  <div class = "small 6-columns">
-  	<div class="control-group">
-      <b><%= label_tag :email %></b>
-      <div class="controls">
-        <b><%= text_field_tag :email, params[:email] %></b>
+  <div class = "row">
+
+    <div class = "small-6 small-offset-3 columns">
+<div id = "log-in-box">
+  <h2>Log In</h2>
+
+  <%= form_tag sessions_path do %>
+
+
+    	<div class="control-group">
+        <b><%= label_tag :email %></b>
+        <div class="controls">
+          <b><%= text_field_tag :email, params[:email] %></b>
+        </div>
       </div>
+
+    	<div class="control-group">
+        <b><%= label_tag :password %></b>
+        <div class="controls">
+          <%= password_field_tag :password%>
+        </div>
+      </div>
+
+      <div class="actions"><%= submit_tag "Log In" %></div>
     </div>
 
-  	<div class="control-group">
-      <b><%= label_tag :password %></b>
-      <div class="controls">
-        <%= password_field_tag :password%>
-      </div>
-    </div>
-
-    <div class="actions"><%= submit_tag "Log In" %></div>
   </div>
+
+  <% end %>
 </div>
 
-<% end %>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

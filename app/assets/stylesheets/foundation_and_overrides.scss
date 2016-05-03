@@ -1426,12 +1426,17 @@ b{
 .top-bar-section a{
 	font-family: "Futura" !important;
   	font-size: 15px !important;
-  	font-weight: lighter !important;
 }
+
 
 .actions {
 	font-family: "Futura" !important;
   	font-size: 15px !important;
+}
+
+#log-in-box{
+	background-color: #dbefce !important;
+	padding: 70px;
 }
 
 @import 'foundation';
