@@ -1524,4 +1524,55 @@ tbody{
   background-color: #7e7e7e !important;
 }
 
+#add-button .button{
+  background-color: #cc919a !important;
+  font-family: "Futura" !important;
+  font-size: 11px !important;
+  color: #ffffff !important;
+}
+
+#add-button a:hover{
+  text-decoration: none !important;
+  background-color: #996d73 !important;
+}
+
+#delete-button a{
+  color: #cc0000 !important;
+  font-family: "Avenir Next" !important;
+  font-size: 14px !important;
+}
+
+#delete-button a:hover{
+  text-decoration: none !important;
+  color: #4c0000 !important;
+}
+
+#form{
+	font-family: "Futura" !important;
+	font-size: 12px !important;
+}
+
+p a{
+	color: #cc919a !important;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+#new-shift-button .button{
+  background-color: #cc919a !important;
+  font-family: "Futura" !important;
+  font-size: 18px !important;
+  color: #ffffff !important;
+  padding-right: 45px;
+  padding-left: 45px;
+}
+
+#new-shift-button a:hover{
+  text-decoration: none !important;
+  background-color: #996d73 !important;
+}
+
+
 @import 'foundation';

@@ -1,7 +1,10 @@
+<div class = "row">
+  <div class = "small-12 small-offset-2  columns">
 <%= simple_form_for @shift, html: { class: 'form-horizontal' } do |f| %>
 
+<div id = "form">
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Shift</legend>
+    <h3><%= controller.action_name.capitalize %> Shift</h3>
     <%= f.input :assignment_id, :collection => Assignment.current.for_store(@store).by_employee, :label_method => lambda { |n| "#{n.employee.name}"}, input_html: {class: "avg"} %>
     <%#= f.input :date, :label => "Start Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
     <%= f.input :date, :label => "Start Date", as: :string, input_html: {class: "avg datepicker"} %>
@@ -14,5 +17,11 @@
       <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
     </div>
   </fieldset>
+</div>
+
+
 <% end %>
+
+</div>
+</div>
 

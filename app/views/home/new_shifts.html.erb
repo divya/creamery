@@ -1,11 +1,25 @@
-<h3>New Shifts</h3>	
+<div class = "row">
+		
+		<br/>
+		<h2>New Shifts</h2>	
+		<br/>
+	
 
- 	<div class="form-actions">
-	  	<%= link_to(new_shift_path(store_id: params[:store_id]), id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
-	  	<!-- <i class="fa fa-plus"></i> -->
-	  		<!-- <a href="javascript:;" onclick="renderNewShiftForm()">TEST JS</a> -->
-	  	&nbsp;Add Shift
-		<% end %>
+	<div class = "small-8 small-offset-5 columns">
+	 	<div class="form-actions">
+	 		<div id = "new-shift-button">
+			  	<%= link_to(new_shift_path(store_id: params[:store_id]), id: 'new_shift_link', class: 'button radius', remote:true) do %>
+			  	&nbsp;ADD<br/>
+			  	SHIFT
+				<% end %>
+			</div>
+		</div>
 	</div>
 
+
+
+<div class = "small-12 columns">
+	<br/>
 	<%= render partial: "list_new_shifts", locals: {store: @store, shifts: @new_shifts}  %>
+</div>
+</div>

@@ -36,6 +36,8 @@ class Ability
       can :read, Shift
       can :create, Shift
       can :update, Shift
+      can :destroy, Shift
+
 
       # can :edit, Assignment do |this_assignment|
       #   managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}

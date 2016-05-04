@@ -16,13 +16,14 @@ class HomeController < ApplicationController
 
   def dashboard
     unless current_user.employee.role? :admin
+      @employee = current_user.employee
     	@store =  Assignment.current.for_employee(current_user.employee_id).first.store
     	#@shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
       @store_flavors = @store.store_flavors
       @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
 
       # --- WEIRD SHIT HAPPENS TO SHIFTS AJAX IF I PUT THIS VARIABLE HERE INSTEAD OF IN THE VIEWS ----------------------------
-      @assignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(5)
+      @assignments = Assignment.current.for_store(@store).by_employee.paginate(page: params[:page]).per_page(5)
     end
   end
 

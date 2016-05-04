@@ -1,4 +1,5 @@
 <div id="shift_form">
+
 <%= simple_form_for @shift, html: { :class => 'form-horizontal' }, remote: true do |f| %>
     <%#= assignment.employee.name %>
     <% if logged_in? and current_user.role? :admin %>
@@ -11,7 +12,7 @@
 
     <%= f.input :date, :label => "Start Date", as: :string, input_html: {class: "avg datepicker"} %>
     <%= f.input :start_time, input_html: {class: "avg"} %>
-    <%= f.input :end_time, input_html: {class: "avg"} %>
+    <%# = f.input :end_time, input_html: {class: "avg"} %>
     <%# f.input :store_id, as: :hidden, input_html: { value: params[:store_id] } %>
     <%# f.hidden_field :store_id, :value => params[:store_id] %>
     <%# f.input :notes, input_html: {class: "avg"} %>

@@ -1,41 +1,23 @@
-<h2> Hello, <%= current_user.employee.first_name %></h2>
-<h2><%= Date.current.strftime("%A %B %d, %Y") %></h2>	
-<h2><%= @store.name unless @store.nil? %></h2>	
+<p>&nbsp;</p>
+<h1> Hello, <%= @employee.first_name %></h1>
+<h2><%= Date.current.strftime("%A %B %d, %Y") %></h2>
+<h3><%= @store.name unless @store.nil? %></h3>	
+<p>&nbsp;</p>
+
 
 
 <div class="row">
- <!--  <div class="small-6 columns">
-		<%# @thisStore = Assignment.current.for_employee(current_user.employee_id).first.store %>
-		<h3>Store Details</h3>
-		<p>
-		  <h4>
-		    Name: <%#= @thisStore.name %>
-		  </h4>
-		</p>
 
-		<p>
-		  <b>Address:</b><br>
-		  <%#= @thisStore.street %><br />
-		  <%#= @thisStore.city %>, <%#= @thisStore.state %> <%#= @thisStore.zip %>
-		</p>
+	<div class="small-4 columns">
+		<h3>Today's Shifts</h3>
+	</div>
 
-		<p>
-		  <b>Phone:</b><br>
-		  <%#= number_to_phone @thisStore.phone %>
-		</p>
-
-		<p>
-		  <b>Active:</b> 
-		  <%#= @thisStore.active ? "Yes" : "No" %>
-		</p> 
-  </div> -->
-
-  	<div class="small-6 columns">
+  	<div class="small-8 columns">
 
 		<% if @today_shifts.empty? %>
 		  <p><em>There are no shifts scheduled for today.</em></p>
 		<% else %>
-		  <h3>Today's Shifts</h3>
+		  <!-- <h3>Today's Shifts</h3> -->
 		  <table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -58,9 +40,11 @@
 				  <td><%= number_to_phone shift.assignment.employee.phone unless shift.assignment.employee.phone.nil?  %></td>
 		          <%if shift.end_time.localtime.strftime("%I:%M %p") < Time.now.strftime("%I:%M %p") %>
 			          <td>
-			            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-			              &nbsp;Add Jobs&nbsp;
-			            <% end %>
+			          	<div id = "add-button">
+				            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+				              &nbsp;Add Jobs&nbsp;
+				            <% end %>
+			        	</div>
 	          		  </td>
 	          	  <% else %>
 	          	       <td>&nbsp;</td>
@@ -73,16 +57,30 @@
 		<% end %>
 		
 	</div>
+
+	<p>&nbsp;</p>
+
+	<div class="small-4 columns">
+		<h3>Flavors Offered</h3>
+	</div>
   
-    <div class="small-6 columns">
+    <div class="small-8 columns">
 	  <%= render 'stores/list_of_flavors' %>
 
-	  <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
-	    Add New Flavor
-	  <% end %>
+	  <div id = "add-button">
+		  <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
+		    Add New Flavor
+		  <% end %>
+		</div>
 	</div>
 
-	<div class="small-12 columns">
+	<p>&nbsp;</p>
+
+	<div class="small-4 columns">
+		<h3>Current Assignments</h3>
+	</div>
+
+	<div class="small-8 columns">
 		<%# @storeassignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(15) %>
 		<% state = "current" %> 
 
@@ -90,7 +88,7 @@
 		  <p><em>There are no <%= state %> assignments at this time.</em></p>
 		<% else %>
 
-		  <h3><%= state.capitalize %> Assignments</h3>
+		  <!-- <h3><%#= state.capitalize %> Assignments</h3> -->
 		  <table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -108,12 +106,17 @@
 		          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
 		          <td><%= number_to_phone assignment.employee.phone unless assignment.employee.phone.nil?  %></td>
 		          <td class="centered"><%= assignment.employee.role.capitalize %></td>
-		          <td>
-		            <%= link_to(assignment_path(assignment), class: 'button tiny radius warning') do %>
-		              &nbsp;View Details&nbsp;
-		            <% end %>
-	          	  </td>
-
+		          
+		          	<% if assignment.employee.role? :employee or assignment.employee == current_user.employee %>
+		          	<td><div id = "view-jobs-button">
+			            <%= link_to(assignment_path(assignment), class: 'button tiny radius warning') do %>
+			              &nbsp;View Details&nbsp;
+			            <% end %></td>
+		        	</div>
+		        	<% else %>
+		        		<td>&nbsp;</td>
+		        	<% end %>
+	          	  
 		        </tr>
 		      <% end %>
 		    </tbody>

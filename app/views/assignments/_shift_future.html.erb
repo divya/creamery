@@ -1,44 +1,46 @@
 <div id = "shift_future">
-<h3>Upcoming Shifts</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <% @upcoming_shifts.each do |shift| %>
+<h4>Upcoming Shifts</h4>
+<% if @upcoming_shifts.nil? or @upcoming_shifts.empty? %>
+  <p>There are no upcoming shifts for this employee.</p>
+<% else %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= shift.date.strftime("%m/%d/%y") %></td>
-    		<td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
-    		<td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
-        <td>
-          <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
-            &nbsp;Edit&nbsp;
-          <% end %>
-        </td>
-         <td>
-          <%= link_to(shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}, class: 'button tiny radius alert') do %>
-              &nbsp;<%= "Delete" %>
-          <% end %>
-        </td>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %><!-- <p>Forthcoming...</p> -->
+    </thead>
+    <tbody>
+      <% @upcoming_shifts.each do |shift| %>
+        <tr>
+          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+      		<td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+      		<td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+          <td>
+            <%= link_to(image_tag("edit.gif"), edit_shift_path(shift)) %>
+          </td>
+           <td>
+            <%= link_to(image_tag("trash.gif"), shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %><!-- <p>Forthcoming...</p> -->
+<% end %>
 
   <div class="form-actions">
+    <div id = "add-button">
       <%= link_to(new_shift_path, id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
       <!-- <i class="fa fa-plus"></i> -->
         <!-- <a href="javascript:;" onclick="renderNewShiftForm()">TEST JS</a> -->
       &nbsp;Add Shift
     <% end %>
+  </div>
   </div>
 
 </div>

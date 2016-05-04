@@ -1,32 +1,36 @@
 <br/>
 <h2><%= @shift.assignment.employee.proper_name %> | <%= @shift.assignment.store.name %></h2>
+<br/>
 <div class="row">
   
     <%= render partial: "shift_details" %>
 
 
-  <div class="small-7 columns">
+  
     <% if logged_in? and current_user.role? :employee %>
+    <div class="small-7 columns">
         <div id = "back-button">
         <%= link_to(employee_shifts_path, class: 'button radius') do %>
           &nbsp;<%= "SEE ALL SHIFTS" %>
         <% end %>
         </div>
+      </div>
     <% end %>
-  </div>
+  
 
-</div>
+
 
 <% if logged_in? and !current_user.role? :employee %>
+<div class="small-7 columns">
   <div class="form-actions">
 
-    <%= link_to(myshifts_path, class: 'button radius') do %>
-      &nbsp;<%= "Back to Shifts" %>
-    <% end %>
+    <%#= link_to(myshifts_path, class: 'button radius') do %>
+      <!-- &nbsp;<%#= "Back to Shifts" %> -->
+    <%# end %>
 
     &nbsp;&nbsp;
     
-    <%= link_to(shift_path(@shift), class: 'button radius') do %>
+    <%= link_to(edit_shift_path(@shift), class: 'button radius') do %>
         &nbsp;<%= "Edit Shift" %>
     <% end %>
     &nbsp;&nbsp;
@@ -35,5 +39,8 @@
         &nbsp;<%= "Delete Shift" %>
     <% end %>
   </div>
+  </div>
+
 <% end %>
 
+</div>

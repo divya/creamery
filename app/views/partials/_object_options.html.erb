@@ -1,4 +1,4 @@
-<%if logged_in? and !current_user.role? :employee %>
+<%if logged_in? and current_user.role? :admin %>
   <% opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
 
   <div class="form-actions">
@@ -16,4 +16,18 @@
         &nbsp;<%= "Delete #{opt}" %>
     <% end %>
   </div>
+
+<%elsif logged_in? and current_user.role? :manager %>
+  <% opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
+
+  <div class="form-actions">
+    <div id = "back-button">
+    <%= link_to(dashboard_path, class: 'button radius') do %>
+      &nbsp;SEE ALL <%= model_name.pluralize.upcase %>
+    <% end %>
+  </div>
+    &nbsp;&nbsp;
+
+
 <% end %>
+</div>
