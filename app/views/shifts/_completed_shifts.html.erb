@@ -40,7 +40,7 @@
           <% end %>
         </tbody>
       </table>
-      <%= will_paginate @completed_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
+      <%= will_paginate @completed_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "completed_shifts"%> <p>&nbsp;</p>
     <% end %>
   </div>
 </div>

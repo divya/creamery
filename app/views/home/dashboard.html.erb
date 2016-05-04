@@ -53,25 +53,9 @@
 		      <% end %>
 		    </tbody>
 		  </table>
-		  <%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+		  <%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "today_shifts"%>  
 		<% end %>
 		
-	</div>
-
-	<p>&nbsp;</p>
-
-	<div class="small-4 columns">
-		<h3>Flavors Offered</h3>
-	</div>
-  
-    <div class="small-8 columns">
-	  <%= render 'stores/list_of_flavors' %>
-
-	  <div id = "add-button">
-		  <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
-		    Add New Flavor
-		  <% end %>
-		</div>
 	</div>
 
 	<p>&nbsp;</p>
@@ -121,22 +105,25 @@
 		      <% end %>
 		    </tbody>
 		  </table>
-		  <%= will_paginate @assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+		  <%= will_paginate @assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "assignments" %>  
 		<% end %>
 	</div>
-</div>
 
+	<p>&nbsp;</p>
+	
 
-
-<!-- 	<div class="small-6 columns">
-		<%#= render partial: "shifts/list_shifts", locals: {store: @store, shifts: @shifts}  %>
-		<%#= render "list_shifts", locals: {model_name: "store", object: @thisStore}  %>
-		<%#= render 'shifts/list_shifts' %>
- 	</div> -->
-
-
+	<div class="small-4 columns">
+		<h3>Flavors Offered</h3>
+	</div>
   
+    <div class="small-8 columns">
+	  <%= render 'stores/list_of_flavors' %>
 
-
-<!-- Add buttons to list all, edit project or destroy object -->
-<%# render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>
+	  <div id = "add-button">
+		  <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
+		    Add New Flavor
+		  <% end %>
+		</div>
+	</div>
+	
+</div>

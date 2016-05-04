@@ -45,7 +45,7 @@
 		      <% end %>
 		    </tbody>
 	  </table>
-	  <%= will_paginate @past_shifts_i, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	  <%= will_paginate @past_shifts_i, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "past_shifts_i" %>  
 	 </div>
 	 
 	<p>&nbsp;</p>
@@ -90,7 +90,7 @@
 		      <% end %>
 		    </tbody>
 	  </table>
-	  <%= will_paginate @past_shifts_c, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	  <%= will_paginate @past_shifts_c, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "past_shifts_c" %>  
 	 </div>
 
 	

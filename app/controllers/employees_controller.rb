@@ -3,13 +3,13 @@ class EmployeesController < ApplicationController
   authorize_resource
   
   def index
-    @active_employees = Employee.active.alphabetical.paginate(page: params[:page]).per_page(10)
-    @inactive_employees = Employee.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+    @active_employees = Employee.active.alphabetical.paginate(page: params[:active_employees]).per_page(10)
+    @inactive_employees = Employee.inactive.alphabetical.paginate(page: params[:inactive_employees]).per_page(10)
   end
 
   def show
     # get the assignment history for this employee
-    @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
+    @assignments = @employee.assignments.chronological.paginate(page: params[:assignments]).per_page(5)
 
     # get upcoming shifts for this employee (later)  
     @upcoming_shifts = Shift.for_employee(@employee).for_next_days(14).chronological

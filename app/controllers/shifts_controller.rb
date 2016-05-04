@@ -4,8 +4,8 @@ class ShiftsController < ApplicationController
   
   
   def index
-    @completed_shifts = Shift.completed.chronological.paginate(page: params[:page]).per_page(10)
-    @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:page]).per_page(10)  
+    @completed_shifts = Shift.completed.chronological.paginate(page: params[:completed_shifts]).per_page(10)
+    @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:incomplete_shifts]).per_page(10)  
     # @store =  Assignment.for_employee(current_user.employee_id).first.store
     # @shifts = Shift.for_store(@store).for_next_days(0).chronological
   end
@@ -37,8 +37,8 @@ class ShiftsController < ApplicationController
       if @shift.save
         @assignment = @shift.assignment
         @store =  Assignment.current.for_employee(current_user.employee_id).first.store if not current_user.employee.current_assignment.nil?
-        @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
-        @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:page]).per_page(5)
+        @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:today_shifts]).per_page(5)
+        @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:upcoming_shifts]).per_page(5)
         if logged_in? and !current_user.role? :admin
           @new_shifts = Shift.upcoming.for_store(current_user.employee.current_assignment.store).reverse_order
         else
@@ -71,7 +71,7 @@ class ShiftsController < ApplicationController
   end
   
   def incomplete_shifts
-    @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:page]).per_page(10)  
+    @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:incomplete_shifts]).per_page(10)  
   end
 
   def start_shift

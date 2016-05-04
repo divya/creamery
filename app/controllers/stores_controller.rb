@@ -3,12 +3,12 @@ class StoresController < ApplicationController
   authorize_resource
   
   def index
-    @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
-    @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)  
+    @active_stores = Store.active.alphabetical.paginate(page: params[:active_stores]).per_page(10)
+    @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:active_stores]).per_page(10)  
   end
 
   def show
-    @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
+    @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:current_assignments]).per_page(8)
     @store_flavors = @store.store_flavors
     @store.get_store_coordinates
     @store.save!
@@ -54,11 +54,7 @@ class StoresController < ApplicationController
     redirect_to stores_path, notice: "Successfully removed #{@store.name} from the AMC system."
   end
 
-  # def test
-  #   @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
-  #   @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
-  #   @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5)
-  # end
+ 
 
   private
   def set_store

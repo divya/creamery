@@ -15,5 +15,5 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @active_flavors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<%= will_paginate @active_flavors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "active_flavors" %>
 
