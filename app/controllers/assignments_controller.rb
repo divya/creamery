@@ -9,30 +9,14 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    # get the shift history for this assignment (later; empty now)
-    #@employee = current_user.employee
     @store = current_user.employee.current_assignment.store
-    @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:upcoming]).per_page(5)
+    @upcoming_shifts = @assignment.shifts.upcoming.chronological.paginate(page: params[:upcoming_shifts]).per_page(5)
     @past_shifts = @assignment.shifts.past.chronological.paginate(page: params[:past_shifts]).per_page(5)
 
   end
 
   def new
     @assignment = Assignment.new
-    # if params[:from].nil?
-    #   if params[:id].nil?
-    #     @assignment = Assignment.new
-    #   else
-    #     @assignment = Assignment.find(params[:id])
-    #   end
-    # else
-    #   @assignment = Assignment.new
-    #   if params[:from] == "store" 
-    #     @assignment.store_id = params[:id]
-    #   else
-    #     @assignment.employee_id = params[:id]
-    #   end
-    # end
   end
 
   def edit
@@ -43,7 +27,6 @@ class AssignmentsController < ApplicationController
     
     if @assignment.save
       redirect_to assignments_path, notice: "#{@assignment.employee.proper_name} is assigned to #{@assignment.store.name}."
-      # redirect_to assignment_path(@assignment), notice: "#{@assignment.employee.proper_name} is assigned to #{@assignment.store.name}."
     else
       render action: 'new'
     end

@@ -3,42 +3,27 @@
 <br/>
 <div class="row">
   
-    <%= render partial: "shift_details" %>
-
-
+  <%= render partial: "shift_details" %>
   
-    <% if logged_in? and current_user.role? :employee %>
-    <div class="small-7 columns">
-        <div id = "back-button">
-        <%= link_to(employee_shifts_path, class: 'button radius') do %>
-          &nbsp;<%= "SEE ALL SHIFTS" %>
-        <% end %>
-        </div>
-      </div>
-    <% end %>
-
-
-<% if logged_in? and !current_user.role? :employee %>
-<div class="small-7 columns">
-  <div class="form-actions">
-
-    <%#= link_to(myshifts_path, class: 'button radius') do %>
-      <!-- &nbsp;<%#= "Back to Shifts" %> -->
-    <%# end %>
-
-    &nbsp;&nbsp;
-    
-    <%= link_to(edit_shift_path(@shift), class: 'button radius') do %>
-        &nbsp;<%= "Edit Shift" %>
-    <% end %>
-    &nbsp;&nbsp;
-    
-    <%#= link_to(shift_path(@shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete shift"}, class: 'button radius alert') do %>
-        <!-- &nbsp;<%#= "Delete Shift" %> -->
-    <%# end %>
+  <% if logged_in? and current_user.role? :employee %>
+  <div class="small-7 columns">
+    <div id = "back-button">
+      <%= link_to(employee_shifts_path, class: 'button radius') do %>
+      &nbsp;<%= "SEE ALL SHIFTS" %>
+      <% end %>
+    </div>
   </div>
+  <% end %>
+  <% if logged_in? and !current_user.role? :employee %>
+  <div class="small-7 columns">
+    <div class="form-actions">
+      &nbsp;&nbsp;
+      
+      <%= link_to(edit_shift_path(@shift), class: 'button radius') do %>
+      &nbsp;<%= "Edit Shift" %>
+      <% end %>
+      &nbsp;&nbsp;
+    </div>
   </div>
-
-<% end %>
-
+  <% end %>
 </div>

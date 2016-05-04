@@ -3,18 +3,15 @@
     <section class="top-bar-section">
 
       <ul class="left">
-        <!-- link to home -->
         <li><%= link_to "Home", home_path %></li>
         <li><%= link_to "Stores", stores_path %></li>
-        <!-- <li><%#= link_to "Flavors", flavors_path %></li> -->
 
-        <!-- options for stores -->
       </ul>
 
       <ul class = "right">
         <% if logged_in? %>
           <li><%= link_to 'Logout', logout_path %></li>
-          <!-- <br>[<%#= current_user.proper_name %>:<#%= current_user.employee.role %>] -->
+
        <% else %>
           <li><%= link_to 'Login', login_path %></li>
        <% end %>

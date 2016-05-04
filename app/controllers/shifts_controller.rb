@@ -6,12 +6,11 @@ class ShiftsController < ApplicationController
   def index
     @completed_shifts = Shift.completed.chronological.paginate(page: params[:completed_shifts]).per_page(10)
     @incomplete_shifts = Shift.incomplete.chronological.paginate(page: params[:incomplete_shifts]).per_page(10)  
-    # @store =  Assignment.for_employee(current_user.employee_id).first.store
-    # @shifts = Shift.for_store(@store).for_next_days(0).chronological
+
   end
 
   def show
-    @jobs = @shift.jobs.alphabetical#.paginate(page: params[:page]).per_page(8)
+    @jobs = @shift.jobs.alphabetical
     @shift_jobs = @shift.shift_jobs
   end
 
@@ -20,7 +19,6 @@ class ShiftsController < ApplicationController
     if logged_in? and !current_user.role? :admin
       @store =  Assignment.current.for_employee(current_user.employee_id).first.store
     end
-    #@assignment =  Assignment.find(params[:assignment_id])  
 
   end
 
@@ -31,8 +29,6 @@ class ShiftsController < ApplicationController
   def create
     @shift = Shift.new(shift_params)
 
-    #@shift.start_time = @shift.start_time.localtime if @shift.start_time
-    #@shift.end_time = @shift.end_time.localtime if @shift.end_time
     respond_to do |format|
       if @shift.save
         @assignment = @shift.assignment
@@ -64,8 +60,7 @@ class ShiftsController < ApplicationController
 
   def destroy
     @shift.destroy
-    #FIX THIS REDIRECT
-    #redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
+
     redirect_to :back, notice: "Successfully removed shift from the AMC system."
 
   end
@@ -76,13 +71,11 @@ class ShiftsController < ApplicationController
 
   def start_shift
     @shift.start_now
-    #@shift.save!
     redirect_to employee_home_path, notice: "Successfully started shift."
   end
 
   def end_shift
     @shift.end_now
-    #@shift.save!
     redirect_to employee_home_path, notice: "Successfully ended shift."
   end
 

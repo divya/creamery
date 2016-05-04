@@ -29,9 +29,6 @@
           </td>
           <td>
              <%= link_to(image_tag("edit.gif"), edit_shift_path(shift)) %>
-            <%#= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
-              <!-- &nbsp;Edit&nbsp; -->
-            <%# end %>
           </td>
            <td>
 
@@ -41,5 +38,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @past_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "past_shifts" %><!-- <p>Forthcoming...</p> -->
+  <%= will_paginate @past_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "past_shifts" %>
 <% end %>

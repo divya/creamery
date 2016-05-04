@@ -1,7 +1,6 @@
 <% if @active_stores.empty? %>
   <p><em>There are no active stores at this time.</em></p>
-<% else %>
-
+  <% else %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,18 +12,18 @@
     </thead>
     <tbody>
       <% @active_stores.each do |store| %>
-        <tr>
-          <td><%= link_to store.name, store_path(store) %></td>
-          <td><%= number_to_phone store.phone %></td>
-          <td><%= store.assignments.current.count %></td>      
-          <td>
-            <%if logged_in? and current_user.role? :admin%>
-              
-                <%= link_to(image_tag("edit.gif"), edit_store_path(store)) %>
-              
-            <% end %>
-          </td>
-        </tr>
+      <tr>
+        <td><%= link_to store.name, store_path(store) %></td>
+        <td><%= number_to_phone store.phone %></td>
+        <td><%= store.assignments.current.count %></td>
+        <td>
+          <%if logged_in? and current_user.role? :admin%>
+          
+          <%= link_to(image_tag("edit.gif"), edit_store_path(store)) %>
+          
+          <% end %>
+        </td>
+      </tr>
       <% end %>
     </tbody>
   </table>

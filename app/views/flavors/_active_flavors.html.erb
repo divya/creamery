@@ -1,35 +1,27 @@
-<% if @active_flavors.empty? %>
+<% if @active_flavors.nil? or @active_flavors.empty? %>
   <p><em>There are no active flavors at this time.</em></p>
-
-<% else %>
-  <!-- <div class="row">
-    <div class="small-6 small-offset-4 columns"> -->
-
+  <% else %>
   <table class="table table-striped">
     <thead>
       <tr>
         <th width="225">Flavor Name</th>
         <th width="75">&nbsp;</th>
-
       </tr>
     </thead>
     <tbody>
       <% @active_flavors.each do |flavor| %>
-        <tr>
-          <td><%= link_to flavor.name, flavor_path(flavor) %></td>
-          <td>
-            <%if logged_in? and current_user.role? :admin%>
-                
-                <%= link_to(image_tag("edit.gif"), edit_flavor_path(flavor)) %>
-                
-            <%end%>
-          </td>
-        </tr>
+      <tr>
+        <td><%= link_to flavor.name, flavor_path(flavor) %></td>
+        <td>
+          <%if logged_in? and current_user.role? :admin%>
+          
+          <%= link_to(image_tag("edit.gif"), edit_flavor_path(flavor)) %>
+          
+          <%end%>
+        </td>
+      </tr>
       <% end %>
     </tbody>
   </table>
-  <!-- </div> -->
-<!-- </div> -->
-
   <%= will_paginate @active_flavors, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "active_flavors" %> <p>&nbsp;</p>
 <% end %>

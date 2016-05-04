@@ -8,7 +8,7 @@
 
 
 		<p><b>Email:</b>
-		 <%= @employee.user.email %></p>
+		 <%= @employee.user.email unless @employee.user.nil? %></p>
 
 		<p><b>Phone:</b>
 		<%= number_to_phone @employee.phone unless @employee.phone.nil? %></p>

@@ -1,45 +1,36 @@
 <div id = "fullImage">
 	<%= link_to(image_tag('test.png')) %>
-</div>	
-
-<!-- <div id= "green-bg"> -->
+</div>
 <br /><br />
 <h2>WELCOME TO A&amp;M CREAMERY</h2>
 <br />
 <div class="row">
 	<div class="small-6 small-offset-3 columns">
 		<p>
-			A&amp;M Creamery is one of the smallest, but absolutely best, chain of 
+			A&amp;M Creamery is one of the smallest, but absolutely best, chain of
 			ice cream shops we know in the Greater Pittsburgh area.
-			You should come to one of our stores and buy lots of our ice cream now.  
-			Our ice cream is delicious, nutritious and amazing in every way.  
-			Why are you still reading this?  You should be down here buying ice 
-			cream right now.  Stop reading and get your backside moving to an 
-			A&amp;M Creamery store now.  
+			You should come to one of our stores and buy lots of our ice cream now.
+			Our ice cream is delicious, nutritious and amazing in every way.
+			Why are you still reading this?  You should be down here buying ice
+			cream right now.  Stop reading and get your backside moving to an
+			A&amp;M Creamery store now.
 			(Still reading? What are you waiting for?)
 		</p>
 		<br /><br />
 	</div>
 </div>
-
-<!-- </div> -->
 <div id = "fullImage">
 	<%= image_tag('IceCreamFlavors.jpg') %>
-</div>	
-
+</div>
 <br /><br />
 <h2>Current Flavors</h2>
-
 <div id = "center-the-things">
-	<% if @active_flavors.nil? %>
-		  	<p>The A&amp;M Creamery currently does not offer any flavors.</p>
-		</div>
-
-	<% else %>
-		<% @active_flavors.each do |flavor| %> 
-		    <p><%=flavor.name%></p>
-		<% end %>
-	<% end %>
+	<% if @active_flavors.nil? or @active_flavors.empty? %>
+		<p>The A&amp;M Creamery currently does not offer any flavors.</p>
 </div>
-
-
+<% else %>
+	<% @active_flavors.each do |flavor| %>
+		<p><%=flavor.name%></p>
+	<% end %>
+<% end %>
+</div>

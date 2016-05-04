@@ -32,6 +32,12 @@ class Ability
         managed_employees.include? this_shift.employee.id && managed_store == this_shift.store.id
       end
 
+      can :destroy, Shift do |this_shift|
+        managed_store = user.employee.current_assignment.store 
+        managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
+        managed_shifts.include? this_shift.id 
+      end
+
       can :create, StoreFlavor do |this_sf|
         managed_store = user.employee.current_assignment.store 
         store_flavors = managed_store.store_flavors.map{|a| a.id} 
@@ -65,22 +71,17 @@ class Ability
       end
 
       can :read, Employee do |this_employee|
-        managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
+        managed_store = user.employee.current_assignment.store 
         managed_employees = Assignment.current.for_store(managed_store).map{|a| a.employee.id} 
         managed_employees.include? this_employee.id 
       end
 
       can :read, Assignment do |this_assignment|
-        managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
+        managed_store = user.employee.current_assignment.store 
         managed_assignments = Assignment.current.for_store(managed_store).map{|a| a.id} 
         managed_assignments.include? this_assignment.id 
       end
 
-      # can :edit, Assignment do |this_assignment|
-      #   managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
-      #   managed_assignments = Assignment.current.for_store(managed_store).map{|a| a.id} 
-      #   managed_assignments.include? this_assignment.id 
-      # end
 
    elsif user.role? :employee
       can :update, User do |u|  
@@ -117,12 +118,6 @@ class Ability
 
   else
       can :read, Store
-
-      # ---------- THIS DOESN'T WORK (???) -------------------
-      # can :read, Store do |this_store|  
-      #   active_stores = Store.active.map{|s| s.id}
-      #   active_stores.include? this_store
-      # end
   end
 
     #

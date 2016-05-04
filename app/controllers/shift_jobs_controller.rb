@@ -14,7 +14,7 @@ class ShiftJobsController < ApplicationController
 
   def new
     @shift_job = ShiftJob.new
-
+    @remaining_jobs = Job.active 
   end
 
   def edit
@@ -25,7 +25,6 @@ class ShiftJobsController < ApplicationController
 
     respond_to do |format|
       if @shift_job.save
-        #@store = @shift.assignment.store
         @shift = @shift_job.shift
         @jobs = @shift.jobs.alphabetical.to_a
         @shift_jobs = @shift.shift_jobs

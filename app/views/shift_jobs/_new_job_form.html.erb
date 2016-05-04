@@ -1,23 +1,15 @@
 <div id = "new_job_form">
 	<%= simple_form_for @shift_job, html: { class: 'form-horizontal' }, remote: true do |f| %>
-	  <fieldset>
-	  	
-	    <legend><%= controller.action_name.capitalize %> Job</legend>
-
-	    <%= f.input :job_id, :collection => Job.all, input_html: {class: "avg"} %>
-	    <%= f.input :shift_id, as: :hidden, input_html: { value: params[:shift_id] } %>
-
-	    <div class="form-actions">
-
-	      <%= f.submit nil, :class => 'button radius' %>
-	      <a href="javascript:;" onclick="removeJobForm()">Cancel</a>
-
-	      <%#= link_to 'Cancel', jobs_path, :class => 'button alert radius' %>
-	    </div>
-	      
-
-	  </fieldset>
+	<fieldset>
+		
+		<legend><%= controller.action_name.capitalize %> Job</legend>
+		<%= f.input :job_id, :collection => @remaining_jobs, input_html: {class: "avg"} %>
+		<%= f.input :shift_id, as: :hidden, input_html: { value: params[:shift_id] } %>
+		<div class="form-actions">
+			<%= f.submit nil, :class => 'button radius' %>
+			<a href="javascript:;" onclick="removeJobForm()">Cancel</a>
+		</div>
+		
+	</fieldset>
 	<% end %>
 </div>
-
-<!-- , :label_method => lambda { |n| "#{n.name}" } -->

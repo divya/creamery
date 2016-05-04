@@ -1,6 +1,6 @@
 <% if assignments.empty? %>
   <p><em>There are no <%= state %> assignments at this time.</em></p>
-<% else %>
+  <% else %>
   <h4><%= state.capitalize %> Assignments</h4>
   <table class="table table-striped">
     <thead>
@@ -10,28 +10,28 @@
         <th class="centered">Pay</th>
         <th>Start Date</th>
         <% if state == 'past' %>
-          <th>End Date</th>
+        <th>End Date</th>
         <% end %>
         <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
       <% assignments.each do |assignment| %>
-        <tr>
-          <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
-          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
-          <td class="centered"><%= assignment.pay_level %></td>
-          <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
-          <% if state == 'past' %>
-            <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
-          <% end %>
-          <td>
-              <%= link_to(image_tag("edit.gif"), edit_assignment_path(assignment)) %>
-          </td>
-        </tr>
+      <tr>
+        <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
+        <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
+        <td class="centered"><%= assignment.pay_level %></td>
+        <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+        <% if state == 'past' %>
+        <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
+        <% end %>
+        <td>
+          <%= link_to(image_tag("edit.gif"), edit_assignment_path(assignment)) %>
+        </td>
+      </tr>
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "assignments" %>  
+  <%= will_paginate assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "assignments" %>
 <% end %>
 <p>&nbsp;</p>

@@ -1,7 +1,6 @@
 <div class="contain-to-grid">
-  <nav class="top-bar" data-topbar role="navigation"> 
+  <nav class="top-bar" data-topbar role="navigation">
     <section class="top-bar-section">
-
       <ul class="left">
         <!-- link to home -->
         <li><%= link_to "Dashboard", dashboard_path %></li>
@@ -10,35 +9,25 @@
         <li><%= link_to "Flavors", flavors_path %></li>
         
       </ul>
-
       
-
       <ul class = "right">
-       <!-- <li><%#= link_to "Dashboard", dashboard_path %></li> -->
-
         <li class="has-dropdown">
-            <%= link_to "Manage Shifts", myshifts_path%>
-
-            <ul class="dropdown">
-              <li><%= link_to "Today's Shifts", myshifts_path %></li>
-              <li><%= link_to "Future Shifts", future_shifts_path %></li>
-              <li><%= link_to "Past Shifts", past_shifts_path %></li>
-              <li><%= link_to "Add New Shifts", new_shifts_path %></li>
-            </ul>
+          <%= link_to "Manage Shifts", myshifts_path%>
+          <ul class="dropdown">
+            <li><%= link_to "Today's Shifts", myshifts_path %></li>
+            <li><%= link_to "Future Shifts", future_shifts_path %></li>
+            <li><%= link_to "Past Shifts", past_shifts_path %></li>
+            <li><%= link_to "Add New Shifts", new_shifts_path %></li>
+          </ul>
         </li>
-
         <li><%= link_to "My Profile", account_path %></li>
         <% if logged_in? %>
-          <li><%= link_to 'Logout', logout_path %></li>
-          <!-- <br>[<%#= current_user.proper_name %>:<#%= current_user.employee.role %>] -->
-       <% else %>
-          <li><%= link_to 'Login', login_path %></li>
-       <% end %>
-     </ul>
+        <li><%= link_to 'Logout', logout_path %></li>
+        <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+        <% end %>
+      </ul>
       
-
     </section>
   </nav>
 </div>
-
-          

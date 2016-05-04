@@ -4,21 +4,18 @@
 	<div id = "subtitle"><p><%= Flavor.active.size %> active flavor(s).
 	<%= Flavor.inactive.size %> inactive flavor(s).</p></div>
 	<br/>
-	<%= render partial: "partials/index_structure", locals: {model_name: "flavor", 
-                                                         primary: "active_flavors", 
-                                                         secondary: nil,
-                                                         sidebar: "inactive_flavors"} %>
+	<%= render partial: "partials/index_structure", locals: {model_name: "flavor",
+	primary: "active_flavors",
+	secondary: nil,
+	sidebar: "inactive_flavors"} %>
 <% else %>
 	<br/>
 	<h2>FLAVORS</h2>
 	<div id = "subtitle"><p>We currently have <%= Flavor.active.size %> unique flavors.</p></div>
 	<br/>
 	<div class="row">
-    <div class="small-6 small-offset-4 columns">
-	<%= render partial: "active_flavors" %>
-</div>
-</div>
+		<div class="small-6 small-offset-4 columns">
+			<%= render partial: "active_flavors" %>
+		</div>
+	</div>
 <% end %>
-
-
-

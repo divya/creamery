@@ -1,20 +1,22 @@
-<h3>Upcoming Shifts</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @upcoming_shifts.each do |shift| %>
+<% unless @upcoming_shifts.nil? or @upcoming_shifts.empty? %>
+  <h3>Upcoming Shifts</h3>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= shift.date.strftime("%m/%d/%y") %></td>
-		<td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
-		<td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "assignments" %><!-- <p>Forthcoming...</p> -->
+    </thead>
+    <tbody>
+      <% @upcoming_shifts.each do |shift| %>
+        <tr>
+          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+  		<td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+  		<td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "assignments" %>
+<%end%>

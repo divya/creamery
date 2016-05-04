@@ -30,14 +30,12 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "upcoming_shifts" %><!-- <p>Forthcoming...</p> -->
+  <%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "upcoming_shifts" %>
 <% end %>
 
   <div class="form-actions">
     <div id = "add-button">
       <%= link_to(new_shift_path, id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
-      <!-- <i class="fa fa-plus"></i> -->
-        <!-- <a href="javascript:;" onclick="renderNewShiftForm()">TEST JS</a> -->
       &nbsp;Add Shift
     <% end %>
   </div>

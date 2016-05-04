@@ -1,39 +1,30 @@
 <div id="list_of_jobs">
-	<%#= @shift_jobs.map{ |n| n.job.name} %>
 	<% unless @shift_jobs.empty? %>
 	<table class="table table-striped">
 		<thead>
-	      <tr>
-	        <th>Job Name</th>
-	        <th>&nbsp;</th>
-	      </tr>
-	    </thead>
-	    <tbody>
+			<tr>
+				<th>Job Name</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
 			
-		        
-	          <% for shift_job in @shift_jobs %>
-	          <tr>
-	          <td><%= link_to shift_job.job.name, job_path(shift_job.job) %></td>
-	          <% if logged_in? and !current_user.role? :employee %>
-	          <td>
-			    <%#= link_to(shift_job_path(shift_job), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this job?"}, class: 'button tiny radius alert') do %>
-			        <!-- &nbsp;<%#= "Delete Job" %> -->
-			    <%# end %>
-			    <%= link_to(image_tag("trash.gif"), shift_job_path(shift_job), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this job?"}) %>
-
-      		  </td>
-      		  	<% else %>
-					<td>&nbsp;</td>
+			
+			<% for shift_job in @shift_jobs %>
+			<tr>
+				<td><%= link_to shift_job.job.name, job_path(shift_job.job) %></td>
+				<% if logged_in? and !current_user.role? :employee %>
+				<td>
+					<%= link_to(image_tag("trash.gif"), shift_job_path(shift_job), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this job?"}) %>
+				</td>
+				<% else %>
+				<td>&nbsp;</td>
 				<% end %>
-	    	  <% end %>
-		        
-		      </p>
-		   
+				<% end %>
+				
+			</p>
+			
 		</tbody>
 	</table>
-
 	<%end%>
-
-
 </div>
-

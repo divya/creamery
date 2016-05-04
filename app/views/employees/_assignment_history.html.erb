@@ -1,32 +1,34 @@
-<h4>ASSIGNMENT HISTORY</h4>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Store</th>
-      <th>Dates</th>
-      <th class="centered">Pay Level</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @assignments.each do |assignment| %>
+<%unless @assignments.nil? or @assignments.empty?%>
+  <h4>ASSIGNMENT HISTORY</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Store</th>
+        <th>Dates</th>
+        <th class="centered">Pay Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @assignments.each do |assignment| %>
       <tr>
         <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
         <td>
           <%= assignment.start_date.strftime("%m/%d/%y") %>
           <% if assignment.end_date.nil?%>
-            &nbsp;&nbsp;&nbsp;
-              <% if logged_in? and current_user.role? :admin%>
-                <%= link_to(edit_assignment_path(assignment), class: 'button tiny radius warning') do %>
-                  &nbsp;End&nbsp;
-                <% end %>
-              <% end %>
+          &nbsp;&nbsp;&nbsp;
+          <% if logged_in? and current_user.role? :admin%>
+          <%= link_to(edit_assignment_path(assignment), class: 'button tiny radius warning') do %>
+          &nbsp;End&nbsp;
+          <% end %>
+          <% end %>
           <% else %>
-            &nbsp;-&nbsp;<%= assignment.end_date.strftime("%m/%d/%y") %>
+          &nbsp;-&nbsp;<%= assignment.end_date.strftime("%m/%d/%y") %>
           <% end %>
         </td>
         <td class="centered"><%= assignment.pay_level %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "assignments" %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", param_name: "assignments" %>
+<%end%>

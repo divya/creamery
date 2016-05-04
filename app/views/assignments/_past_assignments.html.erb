@@ -1,3 +1,3 @@
-<% unless @past_assignments.empty? %>
+<% unless @past_assignments.nil? or @past_assignments.empty? %>
   <%= render partial: "assignment_list", locals: {assignments: @past_assignments, state: 'past'} %>
 <% end %>

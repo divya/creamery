@@ -7,7 +7,6 @@
 
   <div class="small-7 columns">
 	<%= render partial: "job_details" %>
-	<!-- Add buttons to list all, edit project or destroy object -->
 	<%if logged_in? and current_user.role? :admin%>
 		<%= render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>
 

@@ -9,7 +9,6 @@ class JobsController < ApplicationController
   end
 
   def show
-    #@current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
   end
 
   def new

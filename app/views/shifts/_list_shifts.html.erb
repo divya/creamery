@@ -1,62 +1,52 @@
-
 <div id="list_shifts">
-	<!-- <div class="small-6 columns"> -->
-		<br/>
-		<h2>Today's Shifts</h2>	
-		<br/>
-		<%# @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5) %>
-		<div class = "row">
-			<div class = "small-12 small-offset-3 columns">
-		<table class="table table-striped">
-		    <thead>
-		      <tr>
-		        <th>Employee</th>
-		        <th>Start time</th>
-		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
-		        <th>&nbsp;</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <% @today_shifts.each do |shift| %>
-		        <tr>
-		          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
-		          <td><%= shift.start_time.strftime("%I:%M %p") %></td>
-		          <td>
-		            <div id = "add-button">
-			            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-			              &nbsp;Add Jobs&nbsp;
-			            <% end %>
-			          </div>
-          		  </td>
-		          <td>
-		            <%= link_to(image_tag("edit.gif"), edit_shift_path(shift)) %>
-          		  </td>
-          		   <td>
-          		   	<%= link_to(image_tag("trash.gif"), shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}) %>
-				
-          		  </td>
-		        </tr>
-		      <% end %>
-		    </tbody>
-	  </table>
-	  <%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "today_shifts" %>
-  <!-- </div> -->
-		
-
-  	<br/>
- 	<div class="form-actions">
- 		<div id = "add-button">
-	  	<%= link_to(new_shift_path(store_id: params[:store_id]), id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
-	  	&nbsp;Add Shift
-		<% end %>
+	<br/>
+	<h2>Today's Shifts</h2>
+	<br/>
+	<div class = "row">
+		<div class = "small-12 small-offset-3 columns">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Employee</th>
+						<th>Start time</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @today_shifts.each do |shift| %>
+					<tr>
+						<td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
+						<td><%= shift.start_time.strftime("%I:%M %p") %></td>
+						<td>
+							<div id = "add-button">
+								<%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+								&nbsp;Add Jobs&nbsp;
+								<% end %>
+							</div>
+						</td>
+						<td>
+							<%= link_to(image_tag("edit.gif"), edit_shift_path(shift)) %>
+						</td>
+						<td>
+							<%= link_to(image_tag("trash.gif"), shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this shift?"}) %>
+							
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "today_shifts" %>
+			
+			<br/>
+			<div class="form-actions">
+				<div id = "add-button">
+					<%= link_to(new_shift_path(store_id: params[:store_id]), id: 'new_shift_link', class: 'button tiny radius', remote:true) do %>
+					&nbsp;Add Shift
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
-</div>
-
-
-
-<!-- Add buttons to list all, edit project or destroy object -->
-<%# render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>

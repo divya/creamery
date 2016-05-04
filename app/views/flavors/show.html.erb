@@ -1,30 +1,20 @@
-<br/>	
+<br/>
 <h2>
 <%= @flavor.name %>
 </h2>
-
-
-
 <div class="row">
-  <div class="small-7 columns">
-	<%= render partial: "flavor_details" %>
-
-
-
-<!-- Add buttons to list all, edit project or destroy object -->
-	<%if logged_in? and current_user.role? :admin%>
-		<%= render partial: "partials/object_options", locals: {model_name: "flavor", object: @flavor}  %>
-
-
-	<% else %>
-	    <div class="form-actions">
-          <div id = "back-button">
-	      <%= link_to(flavors_path, class: 'button radius') do %>
-	        SEE ALL FLAVORS
-	      <% end %>
-	  	  </div>
-	    </div>
-	<% end %>
-
-</div>
+	<div class="small-7 columns">
+		<%= render partial: "flavor_details" %>
+		<%if logged_in? and current_user.role? :admin%>
+			<%= render partial: "partials/object_options", locals: {model_name: "flavor", object: @flavor}  %>
+		<% else %>
+			<div class="form-actions">
+				<div id = "back-button">
+					<%= link_to(flavors_path, class: 'button radius') do %>
+					SEE ALL FLAVORS
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>

@@ -17,7 +17,6 @@
 		<% if @today_shifts.empty? %>
 		  <p><em>There are no shifts scheduled for today.</em></p>
 		<% else %>
-		  <!-- <h3>Today's Shifts</h3> -->
 		  <table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -65,14 +64,12 @@
 	</div>
 
 	<div class="small-8 columns">
-		<%# @storeassignments = Assignment.current.for_store(@store).paginate(page: params[:page]).per_page(15) %>
 		<% state = "current" %> 
 
 		<% if @assignments.empty? %>
 		  <p><em>There are no <%= state %> assignments at this time.</em></p>
 		<% else %>
 
-		  <!-- <h3><%#= state.capitalize %> Assignments</h3> -->
 		  <table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -85,7 +82,6 @@
 		    </thead>
 		    <tbody>
 		      <% @assignments.each do |assignment| %>
-		      <%# @assignment_test = assignment %>
 		        <tr>
 		          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
 		          <td><%= number_to_phone assignment.employee.phone unless assignment.employee.phone.nil?  %></td>

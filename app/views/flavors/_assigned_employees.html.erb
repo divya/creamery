@@ -6,7 +6,7 @@
     </tr>
   </thead>
   <tbody>
-    <% unless @active_flavors.empty? %>
+    <% unless @active_flavors.nil? or @active_flavors.empty? %>
       <% @active_flavors.each do |flavor| %>
         <tr>
           <td><%= link_to flavor.name, flavor_path(flavor) %></td>

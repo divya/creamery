@@ -8,12 +8,7 @@
 	    <%= render partial: "assignment_history" unless @assignments.empty?%>
 	  </div>
   <%end%>
-<!--   <div class="small-5 columns">
-    <%#= render partial: "upcoming_shifts" unless @assignments.empty?%>
-  </div> -->
 </div>
-
-<!-- Add buttons to list all, edit project or destroy object -->
 
 
 <%= render partial: "partials/object_options", locals: {model_name: "employee", object: @employee}  %>

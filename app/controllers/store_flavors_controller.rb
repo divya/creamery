@@ -7,18 +7,16 @@ class StoreFlavorsController < ApplicationController
   end
 
   def show
-    #@current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
   end
 
   def new
     @store_flavor = StoreFlavor.new
-    #----------ADD IF LOGGED IN STATEMENT ------------------------------
     if logged_in? and !current_user.role? :admin
       @store = Assignment.for_employee(current_user.employee_id).first.store
+      @remaining_flavors = Flavor.active - @store.store_flavors.map{|n| n.flavor}
     end
 
-    #----------ADD THIS FUNCTIONALITY TO JOBS TOO ------------------------------
-    @remaining_flavors = Flavor.active #- @store.store_flavors.map{|n| n.flavor}
+    @remaining_flavors = Flavor.active 
   end
 
   def edit

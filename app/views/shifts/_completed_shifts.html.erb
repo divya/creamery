@@ -1,6 +1,6 @@
 <div class = "row">
   <div class = "small-12 columns">
-    <% if @completed_shifts.empty? %>
+    <% if @completed_shifts.nil? or @completed_shifts.empty? %>
       <p><em>There are no active shifts at this time.</em></p>
     <% else %>
       <br/>

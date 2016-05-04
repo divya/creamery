@@ -1,5 +1,4 @@
 <div id="list_of_flavors">
-	<%#= @shift_jobs.map{ |n| n.job.name} %>
 	<% unless @store_flavors.empty? %>
 	<table class="table table-striped">
 		<thead>
@@ -9,16 +8,13 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-			
-		        
 	          <% for store_flavor in @store_flavors %>
 	          <tr>
 	          <td><%= link_to store_flavor.flavor.name, flavor_path(store_flavor.flavor) %></td>
 	          <td>
 	          	<div id = "delete-button">
 				    <%= link_to(image_tag("trash.gif"), store_flavor_path(store_flavor), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this flavor?"}) %>
-				        <!-- &nbsp;<%#= "X" %> -->
-				    <%# end %>
+
 				</div>
       		  </td>
 	    	  <% end %>

@@ -1,25 +1,18 @@
-	<% unless @store_flavors.empty? %>
-		<p><b>Stores Offering this Flavor:</b></p>
-		  
-		  <% @store_flavors.each do |sf| %>
-		  	<h4><%= link_to(sf.store.name, store_path(sf.store))%></h4>
-		  <% end %>
-		
-	<%end%>
-	<br/>
-
-
-	<% if logged_in? %>
-		<p>
-		  <b>Active:</b> 
-		  <%= @flavor.active ? "Yes" : "No" %>
-		</p>
+<% unless @store_flavors.nil? or @store_flavors.empty? %>
+	<p><b>Stores Offering this Flavor:</b></p>
+	<% @store_flavors.each do |sf| %>
+		<h4><%= link_to(sf.store.name, store_path(sf.store))%></h4>
 	<% end %>
-
+	<br/>
+	<% if logged_in? %>
+	<p>
+		<b>Active:</b>
+		<%= @flavor.active ? "Yes" : "No" %>
+	</p>
+	<% end %>
+<%end%>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
-

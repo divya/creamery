@@ -18,11 +18,8 @@ class HomeController < ApplicationController
     unless current_user.employee.role? :admin
       @employee = current_user.employee
     	@store =  Assignment.current.for_employee(current_user.employee_id).first.store
-    	#@shifts = Shift.for_store(@store).for_next_days(0).chronological #.paginate(page: params[:page]).per_page(5)
       @store_flavors = @store.store_flavors
       @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:today_shifts]).per_page(5)
-
-      # --- WEIRD SHIT HAPPENS TO SHIFTS AJAX IF I PUT THIS VARIABLE HERE INSTEAD OF IN THE VIEWS ----------------------------
       @assignments = Assignment.current.for_store(@store).by_employee.paginate(page: params[:assignments]).per_page(5)
     end
   end
@@ -30,12 +27,11 @@ class HomeController < ApplicationController
   def manage_shifts
     @store =  Assignment.current.for_employee(current_user.employee_id).first.store 
     @today_shifts = Shift.for_store(@store).for_next_days(0).chronological.paginate(page: params[:today_shifts]).per_page(5)
-    #@shift_jobs = @shift.shift_jobs
   end
 
   def employee_home
     @employee = current_user.employee
-    @today_shifts = Shift.for_employee(@employee).for_next_days(0) #.paginate(page: params[:page]).per_page(5)
+    @today_shifts = Shift.for_employee(@employee).for_next_days(0) 
   end
 
   def admin_home
@@ -48,16 +44,13 @@ class HomeController < ApplicationController
 
   def past_shifts
     @store =  Assignment.current.for_employee(current_user.employee_id).first.store
-    #@yesterday = Shift.for_store(@store).for_past_days(1).chronological.paginate(page: params[:page]).per_page(5)
     @past_shifts_c = Shift.for_store(@store).completed.past.chronological.paginate(page: params[:past_shifts_c]).per_page(5)
     @past_shifts_i = Shift.for_store(@store).incomplete.past.chronological.paginate(page: params[:past_shifts_i]).per_page(5)
   end
 
   def future_shifts
     @store =  Assignment.current.for_employee(current_user.employee_id).first.store
-    #@tomorrow = (Shift.for_store(@store).for_next_days(1).chronological - Shift.for_store(@store).for_next_days(0).chronological).paginate(page: params[:page]).per_page(5)
     @future_shifts = Shift.for_store(@store).after_today.chronological.paginate(page: params[:future_shifts]).per_page(5)
-    #@shift_jobs = @shift.shift_jobs
   end
 
   def account

@@ -1,13 +1,14 @@
-<% if @active_employees.empty? %>
+<% if @active_employees.nil? or @active_employees.empty? %>
   <p><em>There are no current employees at this time.</em></p>
 <% else %>
-	<br/>
-	<h2>Employees</h2>
-	<div id = "subtitle"><p><%= Employee.active.size %> active employee(s).
+  <br/>
+  <h2>Employees</h2>
+  <div id = "subtitle">
+  	<p><%= Employee.active.size %> active employee(s).
 	<%= Employee.inactive.size %> inactive employee(s).</p></div>
 	<br/>
-<%= render partial: "partials/index_structure", locals: {model_name: "employee", 
-                                                         primary: "current_employees", 
-                                                         secondary: nil,
-                                                         sidebar: "inactive_employees"} %>
+	<%= render partial: "partials/index_structure", locals: {model_name: "employee", 
+	                                                         primary: "current_employees", 
+	                                                         secondary: nil,
+	                                                         sidebar: "inactive_employees"} %>
 <% end %>

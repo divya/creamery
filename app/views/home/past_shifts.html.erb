@@ -1,7 +1,6 @@
 <br/>
 <h2>Past Shifts</h2>	
 <br/>
-	<%# @shifts = Shift.for_store(@thisStore).for_next_days(0).chronological.paginate(page: params[:page]).per_page(5) %>
 	<div class="row">
 
 	<div class="small-4 columns">
@@ -55,7 +54,6 @@
 	</div>
 	
 	<div class="small-8 columns">
-	<!-- <h4>COMPLETED SHIFTS</h4> -->
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -92,8 +90,4 @@
 	  </table>
 	  <%= will_paginate @past_shifts_c, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: "past_shifts_c" %>  
 	 </div>
-
-	
-
-	
 	</div>

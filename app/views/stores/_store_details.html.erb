@@ -2,7 +2,6 @@
 <h2><%= @store.name %></h2>
 <br/>
 
-<!-- <div class="row"> -->
   <div class="small-2 columns">
 
     <p>
@@ -36,17 +35,6 @@
 
   </div>
 
-
-
-<!-- 
-  <%# logged_in? and current_user.role? :admin%>
-    <div class="small-5 columns">
-      <%#= render partial: "assigned_employees" unless @current_assignments.empty?%>
-    <%#= link_to(edit_store_path(@store), class: 'button radius') do %>
-        &nbsp;<%#= "Edit Store" %>
-    <%# end %>
-    </div>
-  <%# end %> -->
   <div class="small-3 columns">
 
     <% unless @store_flavors.empty? %>
