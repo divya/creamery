@@ -1,5 +1,6 @@
 class StoreFlavorsController < ApplicationController
   before_action :set_store_flavor, only: [:show, :edit, :update, :destroy]
+  authorize_resource
   
   def index
      

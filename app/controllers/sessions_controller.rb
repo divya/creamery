@@ -8,6 +8,8 @@
         session[:user_id] = user.id
         if logged_in? and current_user.role? :employee
           redirect_to employee_home_path, notice: "Logged in!"
+        elsif logged_in? and current_user.role? :manager
+          redirect_to dashboard_path, notice: "Logged in!"
         else
           redirect_to home_path, notice: "Logged in!"
         end

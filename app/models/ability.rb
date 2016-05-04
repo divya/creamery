@@ -12,6 +12,49 @@ class Ability
   elsif user.role? :manager
       # can see a list of all users
       can :read, Store
+      can :read, Shift
+      can :read, Job
+      can :read, Flavor
+      can :read, ShiftJob
+      can :read, StoreFlavor
+
+
+      can :update, Shift do |this_shift|
+        managed_store = user.employee.current_assignment.store 
+        managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
+        managed_shifts.include? this_shift.id 
+      end
+
+
+      can :create, Shift do |this_shift|
+        managed_store = user.employee.current_assignment.store 
+        managed_employees = Assignment.current.for_store(managed_store).map{|a| a.employee.id} 
+        managed_employees.include? this_shift.employee.id && managed_store == this_shift.store.id
+      end
+
+      can :create, StoreFlavor do |this_sf|
+        managed_store = user.employee.current_assignment.store 
+        store_flavors = managed_store.store_flavors.map{|a| a.id} 
+        store_flavors.include? this_sf.id 
+      end
+
+      can :destroy, StoreFlavor do |this_sf|
+        managed_store = user.employee.current_assignment.store
+        store_flavors = managed_store.store_flavors.map{|a| a.id} 
+        store_flavors.include? this_sf.id 
+      end
+
+      can :create, ShiftJob do |this_sj|
+        managed_store = user.employee.current_assignment.store 
+        managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
+        managed_shifts.include? this_sj.shift.id
+      end
+
+      can :destroy, ShiftJob do |this_sj|
+        managed_store = user.employee.current_assignment.store
+        managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
+        managed_shifts.include? this_sj.shift.id
+      end
 
       can :update, User do |u|  
         u.id == user.id
@@ -33,33 +76,12 @@ class Ability
         managed_assignments.include? this_assignment.id 
       end
 
-      can :read, Shift
-      can :create, Shift
-      can :update, Shift
-      can :destroy, Shift
-
-
       # can :edit, Assignment do |this_assignment|
       #   managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
       #   managed_assignments = Assignment.current.for_store(managed_store).map{|a| a.id} 
       #   managed_assignments.include? this_assignment.id 
       # end
 
-      # --------------- DOESN'T WORK  -------------------------------------
-      # can :edit, Shift do |this_shift|
-      #   managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
-      #   managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
-      #   #managed_assignments = Assignment.current.for_store(managed_store).map{|a| a.id} 
-      #   managed_shifts.include? this_shift.id 
-      # end
-
-      # can :create, Shift do |this_shift|
-      #   managed_store = user.employee.current_assignment.store #.map{|p| p.id if p.manager_id == user.id}
-      #   #managed_shifts = Shift.for_store(managed_store).map{|s| s.id}
-      #   managed_employees = Assignment.current.for_store(managed_store).map{|a| a.employee.id} 
-      #   #managed_assignments = Assignment.current.for_store(managed_store).map{|a| a.id} 
-      #   managed_employees.include? this_shift.employee.id && managed_store == this_shift.store.id
-      # end
    elsif user.role? :employee
       can :update, User do |u|  
         u.id == user.id
@@ -91,6 +113,7 @@ class Ability
       can :read, Store
       can :read, Job
       can :read, Flavor
+
 
   else
       can :read, Store
