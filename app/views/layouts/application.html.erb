@@ -22,7 +22,13 @@
     </div> -->
 
 <div id = "center-image">
-   <%= link_to image_tag('banner.png'), home_path %>
+  <% if !logged_in? %>
+    <%= link_to image_tag('banner.png'), home_path %>
+  <% elsif current_user.employee.role== "employee" %>
+    <%= link_to image_tag('banner.png'), employee_home_path %>
+  <% elsif current_user.employee.role== "manager" %>
+    <%= link_to image_tag('banner.png'), dashboard_path %>
+  <% end %>
 </div>
     
 <!--     IF USER IS LOGGED IN THEN SHOW NAVIGATION -->

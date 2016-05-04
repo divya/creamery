@@ -16,8 +16,6 @@
         </div>
       </div>
     <% end %>
-  
-
 
 
 <% if logged_in? and !current_user.role? :employee %>
@@ -35,9 +33,9 @@
     <% end %>
     &nbsp;&nbsp;
     
-    <%= link_to(shift_path(@shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete shift"}, class: 'button radius alert') do %>
-        &nbsp;<%= "Delete Shift" %>
-    <% end %>
+    <%#= link_to(shift_path(@shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete shift"}, class: 'button radius alert') do %>
+        <!-- &nbsp;<%#= "Delete Shift" %> -->
+    <%# end %>
   </div>
   </div>
 

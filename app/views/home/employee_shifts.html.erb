@@ -8,38 +8,45 @@
 	
 	<div class="small-8 columns">
 	<!-- <h3>Today's Shifts</h3> -->
-		<table class="table table-striped">
-		    <thead>
-		      <tr>
-		        <th>Date</th>
-		        <th>Start Time</th>
-		        <th>End Time</th>
-		        <th>&nbsp;</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <% @today_shifts.each do |shift| %>
-		        <tr>
-		          <td><%= shift.date.strftime("%m/%d/%y") %></td>
-		          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
-		          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
-		          <% if Time.now.strftime("%H:%M %p") > shift.end_time.strftime("%H:%M %p") %>
-			          <td>
-			          	<div id = "view-jobs-button">
-			            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
-			              &nbsp;View Jobs&nbsp;
-			            <% end %>
-			        	</div>
-	          		  </td>
-          		  <% else %>
-		        	 	<td>&nbsp;</td>
-          		  <% end %>
 
-		        </tr>
-		      <% end %>
-		    </tbody>
-	  </table>
+		<% unless @today_shifts.nil? or @today_shifts.empty? %>
+			<table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th>Date</th>
+			        <th>Start Time</th>
+			        <th>End Time</th>
+			        <th>&nbsp;</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <% @today_shifts.each do |shift| %>
+			        <tr>
+			          <td><%= shift.date.strftime("%m/%d/%y") %></td>
+			          <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>
+			          <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>
+			          <% if Time.now.strftime("%H:%M %p") > shift.end_time.strftime("%H:%M %p") %>
+				          <td>
+				          	<div id = "view-jobs-button">
+				            <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
+				              &nbsp;View Jobs&nbsp;
+				            <% end %>
+				        	</div>
+		          		  </td>
+	          		  <% else %>
+			        	 	<td>&nbsp;</td>
+	          		  <% end %>
+
+			        </tr>
+			      <% end %>
+			    </tbody>
+		  </table>
 	  <%= will_paginate @today_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+
+	  <% else %>
+	  <p>You have no shifts today.</p>
+	  <% end %>
+
 	 </div>
 
 	 <p>&nbsp;</p>

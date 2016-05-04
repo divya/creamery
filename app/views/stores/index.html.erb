@@ -10,13 +10,11 @@
                                                          secondary: nil,
                                                          sidebar: "inactive_stores"} %>
 <%else%>
-	<% if @active_jobs.empty? %>
-	  <p><em>There are no active jobs at this time.</em></p>
+	<% if @active_stores.nil? or @active_stores.empty? %>
+	  <p><em>There are no active stores at this time.</em></p>
 	<% else %>
 	  
 	  <br/>
-	  <h2>JOBS</h2>
-	  <div id = "subtitle"><p>There are currently <%= Job.active.size %> jobs.</p></div>
 		<%= render partial: "guest_stores_display" %>
 	  <%end%>
 

@@ -9,7 +9,7 @@
 	<h3>TODAY'S SHIFTS</h3>
 	<div class = "small-8 small-offset-3 columns">
 
-	
+		<% unless @today_shifts.nil? or @today_shifts.empty? %>	
 		<table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -47,6 +47,11 @@
 		      <% end %>
 		    </tbody>
 	  </table>
+	  <% else %>
+	  <p><b>You do not have any shifts scheduled for today </p></b>
+	  <% end %>
+
+
 	</div> 
 </div>
 
