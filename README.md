@@ -2,9 +2,9 @@
 Divya Mohan
 ---
 
+The functionality of this app is designed around the primary uses for each kind of employee. The managers have more options to look at kinds of shifts (past, today, upcoming) while admins can create things with greater ease. 
 
-
-
+The way times are translated is weird - because of this the ability to view jobs on certain days seems wrong but it's not, it's just in terms of the time my machine thinks the shifts are which is different from the times that are being displayed for inexplicable reasons. 
 
 
 ___
