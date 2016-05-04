@@ -1,31 +1,50 @@
-<h2> Hello, <%= @employee.first_name %></h2>
-
+<p>&nbsp;</p>
+<h1> Hello, <%= @employee.first_name %></h1>
 <h2><%= Date.current.strftime("%A %B %d, %Y") %></h2>	
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <div clas= "row">
-
 	<div class="small-4 columns">
-		<h3>Active Stores</h3>
-		<%= link_to(stores_path) do  %>
-			See All Stores
-		<% end %>
-		<%= render 'stores/active_stores' %>	
+		<h2>Active Stores</h2>
 
-		<%= link_to(new_store_path, class: 'button radius warning') do %>
-			&nbsp;Add a New Store&nbsp;
-		<% end %>
+		<%#= link_to(stores_path) do  %>
+			<!-- See All Stores -->
+		<%# end %>
+		<div clas= "row">
+			<div class="small-8 small-offset-3 columns">
+				<div id = "add-button">
+					<%= link_to(new_store_path, class: 'button radius warning') do %>
+						&nbsp;Add a New Store&nbsp;
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="small-5 columns">
+	<div class="small-8 columns">
+
+		<%= render 'stores/active_stores' %>	
+
+
+	</div>
+
+	<div class="small-4 columns">
 		<h3>Active Flavors</h3>
-		<%= link_to(flavors_path) do  %>
-			See All Flavors
-		<% end %>
+		<div clas= "row">
+			<div class="small-8 small-offset-3 columns">
+				<div id = "add-button">
+					<%= link_to(new_flavor_path, class: 'button radius warning') do %>
+						&nbsp;Add a New Flavor&nbsp;
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="small-8 columns">
 		<%= render 'flavors/active_flavors' %>
 
-		<%= link_to(new_flavor_path, class: 'button radius warning') do %>
-			&nbsp;Add a New Flavor&nbsp;
-		<% end %>
 	</div>
 
 	<div class="small-2 columns">

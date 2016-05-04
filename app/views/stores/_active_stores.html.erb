@@ -19,9 +19,9 @@
           <td><%= store.assignments.current.count %></td>      
           <td>
             <%if logged_in? and current_user.role? :admin%>
-              <%= link_to(edit_store_path(store), class: 'button tiny radius warning') do %>
-                &nbsp;Edit&nbsp;
-              <% end %>
+              
+                <%= link_to(image_tag("edit.gif"), edit_store_path(store)) %>
+              
             <% end %>
           </td>
         </tr>

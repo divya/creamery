@@ -65,7 +65,9 @@ class ShiftsController < ApplicationController
   def destroy
     @shift.destroy
     #FIX THIS REDIRECT
-    redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
+    #redirect_to myshifts_path, notice: "Successfully removed shift from the AMC system."
+    redirect_to :back, notice: "Successfully removed shift from the AMC system."
+
   end
   
   def incomplete_shifts

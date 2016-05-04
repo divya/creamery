@@ -4,7 +4,15 @@
                                                          secondary: nil,
                                                          sidebar: "inactive_flavors"} %>
 <% else %>
+	<br/>
+	<h2>FLAVORS</h2>
+	<div id = "subtitle"><p>We currently have <%= Flavor.active.size %> unique flavors.</p></div>
+	<br/>
+	<div class="row">
+    <div class="small-6 small-offset-4 columns">
 	<%= render partial: "active_flavors" %>
+</div>
+</div>
 <% end %>
 
 

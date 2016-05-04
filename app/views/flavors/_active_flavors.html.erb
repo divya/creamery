@@ -1,20 +1,16 @@
-<br/>
-<h2>FLAVORS</h2>
-<div id = "subtitle"><p>We currently have <%= Flavor.active.size %> unique flavors.</p></div>
-<br/>
-
 <% if @active_flavors.empty? %>
   <p><em>There are no active flavors at this time.</em></p>
 
 <% else %>
-  <div class="row">
-    <div class="small-6 small-offset-4 columns">
+  <!-- <div class="row">
+    <div class="small-6 small-offset-4 columns"> -->
 
   <table class="table table-striped">
     <thead>
       <tr>
         <th width="225">Flavor Name</th>
         <th width="75">&nbsp;</th>
+
       </tr>
     </thead>
     <tbody>
@@ -23,17 +19,17 @@
           <td><%= link_to flavor.name, flavor_path(flavor) %></td>
           <td>
             <%if logged_in? and current_user.role? :admin%>
-              <%= link_to(edit_flavor_path(flavor), class: 'button tiny radius warning') do %>
-                &nbsp;Edit&nbsp;
-              <% end %>
+                
+                <%= link_to(image_tag("edit.gif"), edit_flavor_path(flavor)) %>
+                
             <%end%>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->
 
   <%= will_paginate @active_flavors, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
 <% end %>
