@@ -1,8 +1,23 @@
 <%if logged_in? and current_user.role? :admin%>
+
+	<br/>
+	<h2>STORES</h2>
+	<div id = "subtitle"><p><%= Store.active.size %> active store(s).
+	<%= Store.inactive.size %> inactive store(s).</p></div>
+	<br/>
 	<%= render partial: "partials/index_structure", locals: {model_name: "store", 
                                                          primary: "active_stores", 
                                                          secondary: nil,
                                                          sidebar: "inactive_stores"} %>
 <%else%>
-	<%= render partial: "guest_stores_display" %>
+	<% if @active_jobs.empty? %>
+	  <p><em>There are no active jobs at this time.</em></p>
+	<% else %>
+	  
+	  <br/>
+	  <h2>JOBS</h2>
+	  <div id = "subtitle"><p>There are currently <%= Job.active.size %> jobs.</p></div>
+		<%= render partial: "guest_stores_display" %>
+	  <%end%>
+
 <%end%>

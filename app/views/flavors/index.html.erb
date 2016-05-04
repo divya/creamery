@@ -1,4 +1,9 @@
 <% if logged_in? and current_user.role? :admin %>
+	<br/>
+	<h2>FLAVORS</h2>
+	<div id = "subtitle"><p><%= Flavor.active.size %> active flavor(s).
+	<%= Flavor.inactive.size %> inactive flavor(s).</p></div>
+	<br/>
 	<%= render partial: "partials/index_structure", locals: {model_name: "flavor", 
                                                          primary: "active_flavors", 
                                                          secondary: nil,

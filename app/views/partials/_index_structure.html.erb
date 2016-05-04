@@ -13,8 +13,7 @@
   <div class="small-4 columns">
     <!-- render the sidebar, if it exists -->
     <%= render partial: "#{sidebar}" unless sidebar.blank? %>
-  </div>
-</div>
+
 
 <!-- Add a button for new instances of object -->
 <%if logged_in? and current_user.role? :admin%>
@@ -23,3 +22,5 @@
     &nbsp;Add a New <%= model_name.capitalize %>
   <% end %>
 <% end %>
+  </div>
+</div>

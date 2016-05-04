@@ -1,8 +1,17 @@
 <% if logged_in? and current_user.role? :admin %>
+	<br/>
+	<h2>JOBS</h2>
+	<div id = "subtitle"><p><%= Job.active.size %> active job(s).
+	<%= Job.inactive.size %> inactive job(s).</p></div>
+	<br/>
 	<%= render partial: "partials/index_structure", locals: {model_name: "job", 
                                                          primary: "active_jobs", 
                                                          secondary: nil,
                                                          sidebar: "inactive_jobs"} %>
 <% else %>
+  <div class="row">
+    <div class="small-6 small-offset-3 columns">
 	<%= render partial: "active_jobs" %>
+	</div>
+</div>
 <% end %>

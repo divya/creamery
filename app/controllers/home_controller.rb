@@ -42,6 +42,8 @@ class HomeController < ApplicationController
     @employee = current_user.employee
     @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(5)
     @active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(5)
+    @active_jobs = Job.active.alphabetical.paginate(page: params[:page]).per_page(5)
+
   end
 
   def past_shifts

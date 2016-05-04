@@ -1,7 +1,7 @@
 <% if assignments.empty? %>
   <p><em>There are no <%= state %> assignments at this time.</em></p>
 <% else %>
-  <h3><%= state.capitalize %> Assignments</h3>
+  <h4><%= state.capitalize %> Assignments</h4>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -26,9 +26,7 @@
             <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
           <% end %>
           <td>
-            <%= link_to(edit_assignment_path(assignment), class: 'button tiny radius warning') do %>
-              &nbsp;Edit&nbsp;
-            <% end %>
+              <%= link_to(image_tag("edit.gif"), edit_assignment_path(assignment)) %>
           </td>
         </tr>
       <% end %>

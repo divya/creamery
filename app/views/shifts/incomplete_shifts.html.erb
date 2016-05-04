@@ -1,7 +1,10 @@
+<div class = "row">
+  <div class = "small-12 columns">
 <% if @incomplete_shifts.empty? %>
   <p><em>There are no incomplete shifts at this time.</em></p>
 <% else %>
-  <h3>Incomplete Shifts</h3>
+  <br/>
+  <h2>Incomplete Shifts</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -24,14 +27,14 @@
           <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>   
           <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>     
           <td>
-            <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
-              &nbsp;Edit&nbsp;
-            <% end %>
+            <%= link_to(image_tag("edit.gif"), edit_shift_path(shift)) %>
           </td>
           <td>
+            <div id = "add-button">
             <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
               &nbsp;View Details&nbsp;
             <% end %>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -39,3 +42,5 @@
   </table>
   <%= will_paginate @incomplete_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
 <% end %>
+</div>
+</div>

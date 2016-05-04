@@ -1,12 +1,4 @@
-<% if @active_jobs.empty? %>
-  <p><em>There are no active jobs at this time.</em></p>
-<% else %>
-  
-  <br/>
-  <h2>JOBS</h2>
-  <div id = "subtitle"><p>There are currently <%= Job.active.size %> jobs.</p></div>
-  <div class="row">
-    <div class="small-6 small-offset-3 columns">
+
       <table class="table table-striped">
         <thead>
           <tr>
@@ -22,19 +14,16 @@
               <td><%= job.description %></td>     
               <td>
                 <%if current_user.role? :admin%>
-                  <%= link_to(edit_job_path(job), class: 'button tiny radius warning') do %>
-                    &nbsp;Edit&nbsp;
-                  <% end %>
+                  <%= link_to(image_tag("edit.gif"), edit_job_path(job)) %>
                 <%end%>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-</div>
-</div>
+
   <%= will_paginate @active_jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
-<% end %>
+
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>

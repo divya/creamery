@@ -1,9 +1,10 @@
 <div class = "row">
-  <div class = "small-8 columns">
+  <div class = "small-12 columns">
     <% if @completed_shifts.empty? %>
       <p><em>There are no active shifts at this time.</em></p>
     <% else %>
-      <h3>Completed Shifts</h3>
+      <br/>
+      <h2>Completed Shifts</h2>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -26,14 +27,14 @@
               <td><%= shift.start_time.localtime.strftime("%I:%M %p") %></td>   
               <td><%= shift.end_time.localtime.strftime("%I:%M %p") %></td>     
               <td>
-                <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
-                  &nbsp;Edit&nbsp;
-                <% end %>
+                <%= link_to(image_tag("edit.gif"), edit_shift_path(shift)) %>
               </td>
               <td>
+                <div id = "add-button">
                 <%= link_to(shift_path(shift), class: 'button tiny radius warning') do %>
                   &nbsp;View Details&nbsp;
                 <% end %>
+                </div>
               </td>
             </tr>
           <% end %>

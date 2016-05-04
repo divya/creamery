@@ -1575,4 +1575,19 @@ p a:hover {
 }
 
 
+#inactive li{
+	font-family: "Avenir Next" !important;
+  	font-size: 18px !important;
+  	color: #8fac7e !important;
+
+}
+
+#inactive li a{
+  	color: #939393 !important;
+}
+
+#inactive a:hover {
+  text-decoration: underline;
+}
+
 @import 'foundation';

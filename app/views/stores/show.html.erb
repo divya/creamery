@@ -9,7 +9,8 @@
 
   <%if logged_in? and current_user.role? :admin%>
 
-	  <div class="small-5 columns">
+	  <div class="small-6 columns">
+      <h4>Current Employees</h4>
 	    <%= render partial: "assigned_employees" unless @current_assignments.empty?%>
 
       <%= link_to(new_assignment_path(store_id: @store.id), class: 'button tiny radius') do %>
@@ -17,12 +18,19 @@
       <% end %>
 	  </div>
 
-    <div class="small-4 columns">
+    <div class="small-6 columns">
+<!--       <h4> Flavors </h4> -->
+      <br/>
       <%= render 'stores/list_of_flavors' %>
 
       <%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
         Add New Flavor
       <% end %>
+    </div>
+
+    <div class = "small-12 columns">
+      <br/>
+      <%= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>
     </div>
 
 <!--   <%# elsif logged_in? and current_user.role? :employee %>
@@ -35,7 +43,7 @@
 
   <% end %>
 
-<%= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>
+<%#= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>
 
 </div>
 
